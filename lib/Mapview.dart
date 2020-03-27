@@ -1,12 +1,11 @@
-import 'dart:convert';
-
-import 'package:coronaapp/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong/latlong.dart';
+
+import 'model.dart';
+import 'service.dart';
 
 class Mapview extends StatefulWidget {
   Mapview();
@@ -19,8 +18,18 @@ class _MapviewState extends State<Mapview> {
   Color blue = Color(0xFF294aff);
   double selectedLat = 0.0;
   double selectedLang = 0.0;
-  CountryDataList countryData;
-  bool _loaded = false;
+  bool loaded = false;
+  List<CountryData> list = [];
+  List<Marker> _markers;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadCountryData().then((v) => {
+          setState(() => {list = v, loaded = true}),
+        });
+  }
 
   void _setToolTipShow(double lat, double lang) {
     setState(() {
@@ -29,40 +38,93 @@ class _MapviewState extends State<Mapview> {
     });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    loadCountry().then((s) => setState(() {
-          countryData = s;
-          _loaded = true;
-        }));
-    print(countryData.countryDatas);
+  void setMarkers() async {
+    var notes = list;
+    List<Marker> markers = [];
+
+    markers = notes.map((n) {
+      double lat = n.latitude;
+      double long = n.longitude;
+      Color selectColor = selectedLat == lat && selectedLang == long
+          ? blue.withOpacity(.3)
+          : pink.withOpacity(.3);
+      LatLng point = LatLng(lat, long);
+      return Marker(
+        width: 200.0,
+        height: 220.0,
+        point: point,
+        builder: (ctx) => Stack(
+          children: <Widget>[
+            GestureDetector(
+              onTap: () => _setToolTipShow(lat, long),
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: selectColor,
+                    border: Border.all(
+                        width: 2,
+                        color: selectedLat == lat && selectedLang == long
+                            ? blue.withOpacity(.3)
+                            : pink),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+              ),
+            ),
+            selectedLat == lat && selectedLang == long
+                ? CountryPopUp(
+                    flag: n.flags,
+                    countryName: n.countryName,
+                    totalCases: n.totalCases,
+                    recovery: n.totalRecovered,
+                    deaths: n.totalDeaths,
+                  )
+                : Container()
+          ],
+        ),
+      );
+    }).toList();
+
+    setState(() {
+      _markers = markers;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FlutterMap(
-        options: MapOptions(
-          maxZoom: 4,
-          minZoom: 3,
-          center: LatLng(20.5937, 78.9629),
-          zoom: 13.0,
-        ),
-        layers: [
+    setMarkers();
+    return Scaffold(
+        body: FlutterMap(
+            options: MapOptions(
+              maxZoom: 4,
+              minZoom: 3,
+              center: LatLng(20.5937, 78.9629),
+              zoom: 13.0,
+            ),
+            layers: [
           TileLayerOptions(
               urlTemplate:
                   "https://api.maptiler.com/maps/positron/{z}/{x}/{y}.png?key=NdGiakn2BJ2BA8hWhBLN",
               subdomains: ['a', 'b', 'c']),
-        ]);
+          MarkerLayerOptions(markers: _markers)
+        ]));
   }
 }
 
 class CountryPopUp extends StatelessWidget {
   final String flag;
   final String countryName;
+  final String totalCases;
+  final String recovery;
+  final String deaths;
 
-  const CountryPopUp({Key key, this.flag, this.countryName}) : super(key: key);
+  const CountryPopUp(
+      {Key key,
+      this.flag,
+      this.countryName,
+      this.totalCases,
+      this.recovery,
+      this.deaths})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +166,7 @@ class CountryPopUp extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: Text(
-                        '2000',
+                        totalCases,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -124,7 +186,7 @@ class CountryPopUp extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: Text(
-                        '10',
+                        recovery,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -144,7 +206,7 @@ class CountryPopUp extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      '2',
+                      deaths,
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

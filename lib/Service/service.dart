@@ -1,5 +1,5 @@
 import 'dart:async' show Future;
-import 'package:coronaapp/model.dart';
+import 'package:coronaapp/Model/model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 

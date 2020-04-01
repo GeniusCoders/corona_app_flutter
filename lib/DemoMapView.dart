@@ -1,19 +1,15 @@
-import 'package:coronaapp/CustomInfoWidget.dart';
+import 'package:coronaapp/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong/latlong.dart';
+import 'package:provider/provider.dart';
 
-import 'model.dart';
-import 'service.dart';
-
-class PointObject {
-  final Widget child;
-  final LatLng location;
-
-  PointObject({this.child, this.location});
-}
+import 'Theme/ThemeProvider.dart';
+import 'Widgets/CountryPopUp.dart';
+import 'Model/model.dart';
+import 'Service/service.dart';
 
 class DemoMapview extends StatefulWidget {
   DemoMapview();
@@ -24,6 +20,7 @@ class DemoMapview extends StatefulWidget {
 class _DemoMapviewState extends State<DemoMapview>
     with TickerProviderStateMixin {
   TextEditingController editcontroller = new TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   FocusNode _focus;
   Color pink = Color(0xFFFF416C);
   Color blue = Color(0xFF294aff);
@@ -34,17 +31,10 @@ class _DemoMapviewState extends State<DemoMapview>
   List<CountryData> list = [];
   List<CountryData> filterItem = [];
   MapController mapController;
-  InfoWidgetRoute _infoWidgetRoute;
-  PointObject point = PointObject(
-    child: Text('India'),
-    location: LatLng(20.30, 78.8796),
-  );
-
   List<Marker> _markers;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadCountryData().then((v) => {
           setState(() => {list = v, loaded = true}),
@@ -79,7 +69,7 @@ class _DemoMapviewState extends State<DemoMapview>
   void setMarkers() async {
     var notes = list;
     List<Marker> markers = [];
-
+    bool notNull(Object o) => o != null;
     markers = notes.map((n) {
       double lat = n.latitude;
       double long = n.longitude;
@@ -88,28 +78,26 @@ class _DemoMapviewState extends State<DemoMapview>
           : pink.withOpacity(.3);
       LatLng point = LatLng(lat, long);
       return Marker(
-        width: 200,
+        width: 280,
         height: 200,
         point: point,
-        builder: (ctx) => Stack(
+        anchorPos: AnchorPos.align(AnchorAlign.bottom),
+        builder: (ctx) => Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              child: GestureDetector(
-                onTap: () => _setToolTipShow(lat, long),
-                child: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: selectColor,
-                      border: Border.all(
-                          width: 2,
-                          color: selectedLat == lat && selectedLang == long
-                              ? blue
-                              : pink),
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                ),
+            GestureDetector(
+              onTap: () => _setToolTipShow(lat, long),
+              child: Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                    color: selectColor,
+                    border: Border.all(
+                        width: 2,
+                        color: selectedLat == lat && selectedLang == long
+                            ? blue
+                            : pink),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
               ),
             ),
             selectedLat == lat && selectedLang == long
@@ -120,8 +108,8 @@ class _DemoMapviewState extends State<DemoMapview>
                     recovery: n.totalRecovered,
                     deaths: n.totalDeaths,
                   )
-                : Container()
-          ],
+                : null
+          ].where(notNull).toList(),
         ),
       );
     }).toList();
@@ -183,7 +171,7 @@ class _DemoMapviewState extends State<DemoMapview>
     setState(() {});
   }
 
-  Widget searchBar() {
+  Widget searchBar(ThemeProvider themeProvider) {
     return Stack(
       children: <Widget>[
         Positioned(
@@ -192,7 +180,7 @@ class _DemoMapviewState extends State<DemoMapview>
           left: 15,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: themeProvider.isLightTheme ? white : lightBlack,
               borderRadius: BorderRadius.all(Radius.circular(10)),
               boxShadow: [
                 BoxShadow(
@@ -206,12 +194,12 @@ class _DemoMapviewState extends State<DemoMapview>
               children: <Widget>[
                 !_focus.hasFocus
                     ? IconButton(
-                        splashColor: Colors.grey,
                         icon: Icon(Icons.menu),
-                        onPressed: () {},
+                        onPressed: () {
+                          _scaffoldKey.currentState.openDrawer();
+                        },
                       )
                     : IconButton(
-                        splashColor: Colors.grey,
                         icon: Icon(
                           Icons.arrow_back_ios,
                           size: 18,
@@ -242,9 +230,9 @@ class _DemoMapviewState extends State<DemoMapview>
     );
   }
 
-  Widget searchCountryList() {
+  Widget searchCountryList(ThemeProvider themeProvider) {
     return Container(
-      color: Color(0xFFF5F5F5),
+      color: themeProvider.isLightTheme ? lightWhite : black,
       child: Stack(
         children: <Widget>[
           Positioned(
@@ -263,7 +251,7 @@ class _DemoMapviewState extends State<DemoMapview>
                                 filterItem[index].longitude,
                                 5.0),
                             child: Container(
-                              color: Colors.white,
+                              color: Colors.transparent,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 14, vertical: 10),
                               child: Row(
@@ -277,13 +265,10 @@ class _DemoMapviewState extends State<DemoMapview>
                                     width: 20,
                                   ),
                                   Expanded(
-                                      child: Text(
-                                    filterItem[index].countryName,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500),
-                                  )),
+                                      child: Text(filterItem[index].countryName,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle)),
                                   Text(
                                     filterItem[index].totalCases,
                                     style: TextStyle(
@@ -302,86 +287,107 @@ class _DemoMapviewState extends State<DemoMapview>
     );
   }
 
-  Widget bottomSheet() {
-    return DraggableScrollableSheet(
-      initialChildSize: .3,
-      minChildSize: 0.1,
-      maxChildSize: .8,
-      builder: (BuildContext context, myscrollController) {
-        return Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(top: Radius.circular((20)))),
-          child: SingleChildScrollView(
-              padding: EdgeInsets.all(10),
-              controller: myscrollController,
-              child: Column(children: <Widget>[
-                Container(
-                  width: 40,
-                  height: 6,
-                  decoration: BoxDecoration(
-                      color: Colors.grey[400],
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      height: 36,
-                      width: 36,
-                      margin: EdgeInsets.only(left: 30, right: 20),
-                      child: SvgPicture.network(
-                          'https://coronavirus.app/assets/img/flags/IN.svg',
-                          fit: BoxFit.cover),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(8)),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        'India',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: .6),
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.share),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[Deatils(), Deatils()],
-                )
-              ])),
-        );
-      },
+  Widget setDrawer(ThemeProvider themeProvider) {
+    return Drawer(
+      child: Container(
+        child: ListView(
+          padding: EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 20, 30),
+              child: Text(
+                'The Coronavirus App',
+                style: Theme.of(context).textTheme.title,
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.location_on,
+                color: Color(0xFFAFAFAF),
+              ),
+              title: Text(
+                'Map',
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.flag,
+                color: Color(0xFFAFAFAF),
+              ),
+              title: Text(
+                'Countries',
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.book,
+                color: Color(0xFFAFAFAF),
+              ),
+              title: Text(
+                'Credit & Source',
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.alternate_email,
+                color: Color(0xFFAFAFAF),
+              ),
+              title: Text(
+                'Contact us',
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 30, 10, 20),
+              child: Text(
+                'PREFERENCES',
+                style: TextStyle(
+                    color: Color(0xFFAFAFAF),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: .3),
+              ),
+            ),
+            ListTile(
+              trailing: Switch(
+                value: themeProvider.isLightTheme,
+                onChanged: (val) {
+                  themeProvider.setThemeData = val;
+                },
+              ),
+              title: Text(
+                'Theme',
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
-
-  // _onTap(PointObject point) {
-  //   print('hello');
-  //   final RenderBox renderBox = context.findRenderObject();
-  //   Rect _itemRect = renderBox.localToGlobal(Offset.zero) & renderBox.size;
-  //   print(_itemRect);
-  //   _infoWidgetRoute = InfoWidgetRoute(
-  //     child: point.child,
-  //     buildContext: context,
-  //     textStyle: const TextStyle(
-  //       fontSize: 14,
-  //       color: Colors.black,
-  //     ),
-  //     mapsWidgetSize: _itemRect,
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
     setMarkers();
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    String mapType;
+    if (mapController != null) {
+      if (isDark) {
+        mapType = "darkmatter";
+      } else {
+        mapType = "positron";
+      }
+    }
+
     return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Theme.of(context).backgroundColor,
+      drawer: setDrawer(themeProvider),
       body: Stack(
         children: <Widget>[
           FlutterMap(
@@ -398,172 +404,12 @@ class _DemoMapviewState extends State<DemoMapview>
               layers: [
                 TileLayerOptions(
                     urlTemplate:
-                        "https://api.maptiler.com/maps/positron/{z}/{x}/{y}.png?key=NdGiakn2BJ2BA8hWhBLN",
+                        "https://api.maptiler.com/maps/$mapType/{z}/{x}/{y}.png?key=NdGiakn2BJ2BA8hWhBLN",
                     subdomains: ['a', 'b', 'c']),
                 MarkerLayerOptions(markers: _markers)
               ]),
-          _focus.hasFocus ? searchCountryList() : Container(),
-          searchBar(),
-        ],
-      ),
-    );
-  }
-}
-
-class Deatils extends StatelessWidget {
-  final String title;
-  final String subtitle;
-
-  const Deatils({Key key, this.title = "102", this.subtitle = "Total death"})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      height: 90,
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            subtitle,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.grey,
-                letterSpacing: .4),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class CountryPopUp extends StatelessWidget {
-  final String flag;
-  final String countryName;
-  final String totalCases;
-  final String recovery;
-  final String deaths;
-  final LayerLink link;
-  const CountryPopUp(
-      {Key key,
-      this.flag = "https://coronavirus.app/assets/img/flags/AO.svg",
-      this.countryName = "Cuba Nuba",
-      this.totalCases = "1200",
-      this.recovery = "200",
-      this.deaths = "10",
-      this.link})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 140,
-      margin: EdgeInsets.only(left: 20, top: 20),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          color: Colors.white.withOpacity(.8),
-          boxShadow: [
-            BoxShadow(
-                blurRadius: 6,
-                offset: Offset(2, 0),
-                color: Color.fromRGBO(0, 0, 0, 0.1),
-                spreadRadius: 0)
-          ]),
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 80,
-            child: SvgPicture.network(flag, fit: BoxFit.cover),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  countryName,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: .6),
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        totalCases,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: .6),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Total Cases',
-                      style: TextStyle(fontSize: 12, letterSpacing: .6),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        recovery,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: .6),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Recoveries',
-                      style: TextStyle(fontSize: 12, letterSpacing: .6),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text(
-                      deaths,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: .6),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Deaths',
-                      style: TextStyle(fontSize: 12, letterSpacing: .6),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          )
+          _focus.hasFocus ? searchCountryList(themeProvider) : Container(),
+          searchBar(themeProvider),
         ],
       ),
     );

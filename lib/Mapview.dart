@@ -4,8 +4,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong/latlong.dart';
 
-import 'model.dart';
-import 'service.dart';
+import 'Model/model.dart';
+import 'Service/service.dart';
 
 class Mapview extends StatefulWidget {
   Mapview();

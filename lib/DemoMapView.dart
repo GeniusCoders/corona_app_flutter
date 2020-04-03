@@ -1,5 +1,6 @@
 import 'package:coronaapp/style/colors.dart';
 import 'package:coronaapp/widgets/CountryListView.dart';
+import 'package:coronaapp/widgets/CustomSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -30,7 +31,7 @@ class _DemoMapviewState extends State<DemoMapview>
   List<CountryData> filterItem = [];
   MapController mapController;
   List<Marker> _markers;
-
+  int selectedRouteIndex = 0;
   String selectedFilter = "Total cases";
 
   @override
@@ -62,9 +63,13 @@ class _DemoMapviewState extends State<DemoMapview>
 
   void _onFocusChange() {
     if (_focus.hasFocus) {
-      setState(() {});
+      setState(() {
+        selectedRouteIndex = 1;
+      });
     } else if (!_focus.hasFocus) {
-      setState(() {});
+      setState(() {
+        selectedRouteIndex = 0;
+      });
     }
   }
 
@@ -194,7 +199,9 @@ class _DemoMapviewState extends State<DemoMapview>
 
   void onMenu() {
     _focus.unfocus();
-    setState(() {});
+    setState(() {
+      selectedRouteIndex = 0;
+    });
   }
 
   Widget bottomSheetView() {
@@ -263,7 +270,7 @@ class _DemoMapviewState extends State<DemoMapview>
           left: 15,
           child: Container(
             decoration: BoxDecoration(
-              color: themeProvider.isLightTheme ? white : lightBlack,
+              color: themeProvider.isLightTheme ? lightBlack : white,
               borderRadius: BorderRadius.all(Radius.circular(10)),
               boxShadow: [
                 BoxShadow(
@@ -287,10 +294,7 @@ class _DemoMapviewState extends State<DemoMapview>
                       )
                     : IconButton(
                         icon: FaIcon(FontAwesomeIcons.angleLeft),
-                        onPressed: () {
-                          onMenu();
-                        },
-                      ),
+                        onPressed: () => onMenu()),
                 Expanded(
                   child: TextField(
                     controller: editcontroller,
@@ -311,6 +315,7 @@ class _DemoMapviewState extends State<DemoMapview>
                       size: 18,
                     ),
                     onPressed: () {
+                      _focus.unfocus();
                       _scaffoldKey.currentState
                           .showBottomSheet((context) => bottomSheetView());
                     })
@@ -320,6 +325,12 @@ class _DemoMapviewState extends State<DemoMapview>
         ),
       ],
     );
+  }
+
+  TextStyle getSelectedTextTheme(myRouetIndex) {
+    return selectedRouteIndex == myRouetIndex
+        ? TextStyle(color: pink, fontSize: 16, fontWeight: FontWeight.w600)
+        : Theme.of(context).textTheme.subtitle;
   }
 
   Widget setDrawer(ThemeProvider themeProvider) {
@@ -341,7 +352,7 @@ class _DemoMapviewState extends State<DemoMapview>
                 size: 18,
                 color: iconColor,
               ),
-              title: Text('Map', style: Theme.of(context).textTheme.subtitle),
+              title: Text('Map', style: getSelectedTextTheme(0)),
             ),
             ListTile(
               leading: FaIcon(
@@ -351,10 +362,12 @@ class _DemoMapviewState extends State<DemoMapview>
               ),
               onTap: () {
                 Navigator.pop(context);
+                setState(() {
+                  selectedRouteIndex = 1;
+                });
                 FocusScope.of(context).requestFocus(_focus);
               },
-              title: Text('Countries',
-                  style: Theme.of(context).textTheme.subtitle),
+              title: Text('Countries', style: getSelectedTextTheme(1)),
             ),
             ListTile(
               leading: FaIcon(
@@ -362,8 +375,12 @@ class _DemoMapviewState extends State<DemoMapview>
                 size: 18,
                 color: iconColor,
               ),
-              title: Text('Credit & Source',
-                  style: Theme.of(context).textTheme.subtitle),
+              onTap: () {
+                setState(() {
+                  selectedRouteIndex = 2;
+                });
+              },
+              title: Text('Credit & Source', style: getSelectedTextTheme(2)),
             ),
             ListTile(
               leading: FaIcon(
@@ -388,7 +405,7 @@ class _DemoMapviewState extends State<DemoMapview>
               ),
             ),
             ListTile(
-              trailing: Switch(
+              trailing: CustomSwitch(
                 value: themeProvider.isLightTheme,
                 onChanged: (val) {
                   themeProvider.setThemeData = val;
@@ -413,7 +430,7 @@ class _DemoMapviewState extends State<DemoMapview>
 
     String mapType;
     if (mapController != null) {
-      if (!themeProvider.isLightTheme) {
+      if (themeProvider.isLightTheme) {
         mapType = "darkmatter";
       } else {
         mapType = "positron";

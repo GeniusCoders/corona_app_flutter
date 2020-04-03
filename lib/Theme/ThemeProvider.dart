@@ -5,7 +5,7 @@ class ThemeProvider with ChangeNotifier {
   bool isLightTheme;
   ThemeProvider({this.isLightTheme});
 
-  ThemeData get getThemeData => isLightTheme ? lightTheme : darkTheme;
+  ThemeData get getThemeData => isLightTheme ? darkTheme : lightTheme;
 
   set setThemeData(bool val) {
     if (val) {

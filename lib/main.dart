@@ -8,7 +8,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(
-        isLightTheme: false,
+        isLightTheme: true,
       ),
       child: MyApp(),
     ),

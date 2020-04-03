@@ -10,3 +10,4 @@ const Color blue = Color(0xFF294aff);
 const Color iconColor = Color(0xFFAFAFAF);
 const Color green = Color(0xFF61ce81);
 const Color purple = Color(0xFF8643e6);
+const Color yellow = Color(0xFFFFE707);

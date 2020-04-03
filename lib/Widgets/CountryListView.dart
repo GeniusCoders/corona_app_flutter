@@ -22,6 +22,35 @@ class _CountryListViewState extends State<CountryListView> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
+    Text textData(text, color) {
+      return Text(
+        text,
+        style: TextStyle(fontSize: 18, color: color),
+      );
+    }
+
+    Widget setTextData(index) {
+      final text = widget.filterItem[index];
+      switch (widget.selectedFilter) {
+        case 'Total cases':
+          return textData(text.totalCases, pink);
+          break;
+
+        case 'Deaths':
+          return text.totalDeaths != '0'
+              ? textData(text.totalDeaths, purple)
+              : null;
+          break;
+
+        case 'Recoveries':
+          return text.totalRecovered != '0'
+              ? textData(text.totalRecovered, green)
+              : null;
+          break;
+      }
+      return SizedBox();
+    }
+
     Widget listView(index, color) {
       return GestureDetector(
         onTap: () => widget._animatedMapMove(widget.filterItem[index].latitude,
@@ -42,10 +71,7 @@ class _CountryListViewState extends State<CountryListView> {
               Expanded(
                   child: Text(widget.filterItem[index].countryName,
                       style: Theme.of(context).textTheme.subtitle)),
-              Text(
-                widget.filterItem[index].totalCases,
-                style: TextStyle(fontSize: 18, color: color),
-              )
+              setTextData(index)
             ],
           ),
         ),
@@ -74,7 +100,7 @@ class _CountryListViewState extends State<CountryListView> {
     }
 
     return Container(
-      color: themeProvider.isLightTheme ? lightWhite : black,
+      color: themeProvider.isLightTheme ? black : lightWhite,
       child: Stack(
         children: <Widget>[
           Positioned(

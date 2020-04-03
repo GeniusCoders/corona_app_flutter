@@ -52,8 +52,8 @@ class _CountryListViewState extends State<CountryListView> {
       );
     }
 
-    Widget getDetails(selectedFilter, index) {
-      switch (selectedFilter) {
+    Widget getDetails(index) {
+      switch (widget.selectedFilter) {
         case 'Total cases':
           return listView(index, pink);
           break;
@@ -87,7 +87,7 @@ class _CountryListViewState extends State<CountryListView> {
                     ? ListView.builder(
                         itemCount: widget.filterItem.length,
                         itemBuilder: (context, index) {
-                          return getDetails(widget.selectedFilter, index);
+                          return getDetails(index);
                         },
                       )
                     : SizedBox()),

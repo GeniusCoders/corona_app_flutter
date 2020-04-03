@@ -3,6 +3,7 @@ import 'package:coronaapp/widgets/CountryListView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -213,7 +214,7 @@ class _DemoMapviewState extends State<DemoMapview>
                 style: Theme.of(context).textTheme.title,
               ),
               IconButton(
-                icon: Icon(Icons.close),
+                icon: FaIcon(FontAwesomeIcons.times, size: 20),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -276,16 +277,16 @@ class _DemoMapviewState extends State<DemoMapview>
               children: <Widget>[
                 !_focus.hasFocus
                     ? IconButton(
-                        icon: Icon(Icons.menu),
+                        icon: FaIcon(
+                          FontAwesomeIcons.bars,
+                          size: 18,
+                        ),
                         onPressed: () {
                           _scaffoldKey.currentState.openDrawer();
                         },
                       )
                     : IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          size: 18,
-                        ),
+                        icon: FaIcon(FontAwesomeIcons.angleLeft),
                         onPressed: () {
                           onMenu();
                         },
@@ -305,7 +306,10 @@ class _DemoMapviewState extends State<DemoMapview>
                   ),
                 ),
                 IconButton(
-                    icon: Icon(Icons.sort),
+                    icon: FaIcon(
+                      FontAwesomeIcons.filter,
+                      size: 18,
+                    ),
                     onPressed: () {
                       _scaffoldKey.currentState
                           .showBottomSheet((context) => bottomSheetView());
@@ -332,15 +336,17 @@ class _DemoMapviewState extends State<DemoMapview>
               ),
             ),
             ListTile(
-              leading: Icon(
-                Icons.location_on,
+              leading: FaIcon(
+                FontAwesomeIcons.mapMarkerAlt,
+                size: 18,
                 color: iconColor,
               ),
               title: Text('Map', style: Theme.of(context).textTheme.subtitle),
             ),
             ListTile(
-              leading: Icon(
-                Icons.flag,
+              leading: FaIcon(
+                FontAwesomeIcons.fontAwesomeFlag,
+                size: 18,
                 color: iconColor,
               ),
               onTap: () {
@@ -351,16 +357,18 @@ class _DemoMapviewState extends State<DemoMapview>
                   style: Theme.of(context).textTheme.subtitle),
             ),
             ListTile(
-              leading: Icon(
-                Icons.book,
+              leading: FaIcon(
+                FontAwesomeIcons.book,
+                size: 18,
                 color: iconColor,
               ),
               title: Text('Credit & Source',
                   style: Theme.of(context).textTheme.subtitle),
             ),
             ListTile(
-              leading: Icon(
-                Icons.alternate_email,
+              leading: FaIcon(
+                FontAwesomeIcons.at,
+                size: 18,
                 color: iconColor,
               ),
               title: Text(

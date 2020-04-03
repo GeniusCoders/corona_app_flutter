@@ -1,4 +1,4 @@
-import 'package:coronaapp/colors.dart';
+import 'package:coronaapp/Style/colors.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider with ChangeNotifier {

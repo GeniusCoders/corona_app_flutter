@@ -1,8 +1,8 @@
-import 'package:coronaapp/colors.dart';
+import 'package:coronaapp/style/colors.dart';
+import 'package:coronaapp/widgets/CountryListView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -22,22 +22,23 @@ class _DemoMapviewState extends State<DemoMapview>
   TextEditingController editcontroller = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   FocusNode _focus;
-  Color pink = Color(0xFFFF416C);
-  Color blue = Color(0xFF294aff);
   double selectedLat = 0.0;
   double selectedLang = 0.0;
   double top = 80;
-  bool loaded = false;
   List<CountryData> list = [];
   List<CountryData> filterItem = [];
   MapController mapController;
   List<Marker> _markers;
 
+  String selectedFilter = "Total cases";
+
   @override
   void initState() {
     super.initState();
     loadCountryData().then((v) => {
-          setState(() => {list = v, loaded = true}),
+          setState(() => {
+                list = v,
+              }),
         });
     mapController = MapController();
     _focus = FocusNode();
@@ -66,16 +67,52 @@ class _DemoMapviewState extends State<DemoMapview>
     }
   }
 
+  setMarkerFilter(n) {
+    double lat = n.latitude;
+    double long = n.longitude;
+
+    switch (selectedFilter) {
+      case 'Total cases':
+        return markerView(lat, long, pink);
+        break;
+
+      case 'Deaths':
+        return n.totalDeaths != '0'
+            ? markerView(lat, long, purple)
+            : SizedBox();
+        break;
+
+      case 'Recoveries':
+        return n.totalRecovered != '0'
+            ? markerView(lat, long, green)
+            : SizedBox();
+        break;
+    }
+  }
+
+  Container markerView(lat, long, color) {
+    Color selectColor = selectedLat == lat && selectedLang == long
+        ? blue.withOpacity(.3)
+        : color.withOpacity(.3);
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: BoxDecoration(
+          color: selectColor,
+          border: Border.all(
+              width: 2,
+              color: selectedLat == lat && selectedLang == long ? blue : color),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+    );
+  }
+
   void setMarkers() async {
-    var notes = list;
     List<Marker> markers = [];
     bool notNull(Object o) => o != null;
-    markers = notes.map((n) {
+    markers = list.map((n) {
       double lat = n.latitude;
       double long = n.longitude;
-      Color selectColor = selectedLat == lat && selectedLang == long
-          ? blue.withOpacity(.3)
-          : pink.withOpacity(.3);
+
       LatLng point = LatLng(lat, long);
       return Marker(
         width: 280,
@@ -86,20 +123,8 @@ class _DemoMapviewState extends State<DemoMapview>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             GestureDetector(
-              onTap: () => _setToolTipShow(lat, long),
-              child: Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                    color: selectColor,
-                    border: Border.all(
-                        width: 2,
-                        color: selectedLat == lat && selectedLang == long
-                            ? blue
-                            : pink),
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-              ),
-            ),
+                onTap: () => _setToolTipShow(lat, long),
+                child: setMarkerFilter(n)),
             selectedLat == lat && selectedLang == long
                 ? CountryPopUp(
                     flag: n.flags,
@@ -171,6 +196,63 @@ class _DemoMapviewState extends State<DemoMapview>
     setState(() {});
   }
 
+  Widget bottomSheetView() {
+    return Container(
+      height: 260,
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+          // color: Theme.of(context).backgroundColor,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(26))),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Filter',
+                style: Theme.of(context).textTheme.title,
+              ),
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
+          bottomListTiles('Total cases', pink),
+          bottomListTiles('Deaths', purple),
+          bottomListTiles('Recoveries', green),
+        ],
+      ),
+    );
+  }
+
+  ListTile bottomListTiles(String title, Color color) {
+    return ListTile(
+      onTap: () {
+        setState(() {
+          selectedFilter = title;
+          selectedLat = 0;
+          selectedLang = 0;
+        });
+        Navigator.of(context).pop();
+      },
+      leading: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+            border: Border.all(width: 2, color: color),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            color: color.withOpacity(.2)),
+      ),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.title,
+      ),
+    );
+  }
+
   Widget searchBar(ThemeProvider themeProvider) {
     return Stack(
       children: <Widget>[
@@ -222,68 +304,17 @@ class _DemoMapviewState extends State<DemoMapview>
                         hintText: "Search regions"),
                   ),
                 ),
+                IconButton(
+                    icon: Icon(Icons.sort),
+                    onPressed: () {
+                      _scaffoldKey.currentState
+                          .showBottomSheet((context) => bottomSheetView());
+                    })
               ],
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget searchCountryList(ThemeProvider themeProvider) {
-    return Container(
-      color: themeProvider.isLightTheme ? lightWhite : black,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: top,
-            right: 15,
-            left: 15,
-            bottom: 0,
-            child: Container(
-                child: filterItem.length != 0 || editcontroller.text.isNotEmpty
-                    ? ListView.builder(
-                        itemCount: filterItem.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => _animatedMapMove(
-                                filterItem[index].latitude,
-                                filterItem[index].longitude,
-                                5.0),
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 10),
-                              child: Row(
-                                children: <Widget>[
-                                  SvgPicture.network(
-                                    filterItem[index].flags,
-                                    width: 26,
-                                    height: 26,
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                      child: Text(filterItem[index].countryName,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle)),
-                                  Text(
-                                    filterItem[index].totalCases,
-                                    style: TextStyle(
-                                        fontSize: 18, color: Color(0xFFFF416C)),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      )
-                    : SizedBox()),
-          ),
-        ],
-      ),
     );
   }
 
@@ -303,37 +334,34 @@ class _DemoMapviewState extends State<DemoMapview>
             ListTile(
               leading: Icon(
                 Icons.location_on,
-                color: Color(0xFFAFAFAF),
+                color: iconColor,
               ),
-              title: Text(
-                'Map',
-                style: Theme.of(context).textTheme.subtitle,
-              ),
+              title: Text('Map', style: Theme.of(context).textTheme.subtitle),
             ),
             ListTile(
               leading: Icon(
                 Icons.flag,
-                color: Color(0xFFAFAFAF),
+                color: iconColor,
               ),
-              title: Text(
-                'Countries',
-                style: Theme.of(context).textTheme.subtitle,
-              ),
+              onTap: () {
+                Navigator.pop(context);
+                FocusScope.of(context).requestFocus(_focus);
+              },
+              title: Text('Countries',
+                  style: Theme.of(context).textTheme.subtitle),
             ),
             ListTile(
               leading: Icon(
                 Icons.book,
-                color: Color(0xFFAFAFAF),
+                color: iconColor,
               ),
-              title: Text(
-                'Credit & Source',
-                style: Theme.of(context).textTheme.subtitle,
-              ),
+              title: Text('Credit & Source',
+                  style: Theme.of(context).textTheme.subtitle),
             ),
             ListTile(
               leading: Icon(
                 Icons.alternate_email,
-                color: Color(0xFFAFAFAF),
+                color: iconColor,
               ),
               title: Text(
                 'Contact us',
@@ -345,7 +373,7 @@ class _DemoMapviewState extends State<DemoMapview>
               child: Text(
                 'PREFERENCES',
                 style: TextStyle(
-                    color: Color(0xFFAFAFAF),
+                    color: iconColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     letterSpacing: .3),
@@ -372,12 +400,12 @@ class _DemoMapviewState extends State<DemoMapview>
   @override
   Widget build(BuildContext context) {
     setMarkers();
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     String mapType;
     if (mapController != null) {
-      if (isDark) {
+      if (!themeProvider.isLightTheme) {
         mapType = "darkmatter";
       } else {
         mapType = "positron";
@@ -408,8 +436,10 @@ class _DemoMapviewState extends State<DemoMapview>
                     subdomains: ['a', 'b', 'c']),
                 MarkerLayerOptions(markers: _markers)
               ]),
-          _focus.hasFocus ? searchCountryList(themeProvider) : Container(),
-          searchBar(themeProvider),
+          _focus.hasFocus
+              ? CountryListView(filterItem, _animatedMapMove, selectedFilter)
+              : Container(),
+          searchBar(themeProvider)
         ],
       ),
     );

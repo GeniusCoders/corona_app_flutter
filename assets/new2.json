@@ -1,0 +1,1622 @@
+[{
+    "countryName": "Afghanistan",
+    "latitude": 33.93911,
+    "longitude": 67.709953,
+    "Total Case": "337",
+    "Total Recovered": "12",
+    "Total Deaths": "7",
+    "Flags": "https://coronavirus.app/assets/img/flags/AF.svg"
+  },
+  {
+    "countryName": "Albania",
+    "latitude": 41.153332,
+    "longitude": 20.168331,
+    "Total Case": "361",
+    "Total Recovered": "104",
+    "Total Deaths": "20",
+    "Flags": "https://coronavirus.app/assets/img/flags/AL.svg"
+  },
+  {
+    "countryName": "Algeria",
+    "latitude": 28.033886,
+    "longitude": 1.659626,
+    "Total Case": "1,251",
+    "Total Recovered": "90",
+    "Total Deaths": "130",
+    "Flags": "https://coronavirus.app/assets/img/flags/DZ.svg"
+  },
+  {
+    "countryName": "Andorra",
+    "latitude": 42.546245,
+    "longitude": 1.601554,
+    "Total Case": "466",
+    "Total Recovered": "21",
+    "Total Deaths": "17",
+    "Flags": "https://coronavirus.app/assets/img/flags/AD.svg"
+  },
+  {
+    "countryName": "Angola",
+    "latitude": -11.202692,
+    "longitude": 17.873887,
+    "Total Case": "10",
+    "Total Recovered": "2",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/AO.svg"
+  },
+  {
+    "countryName": "Antigua and Barbuda",
+    "latitude": 17.060816,
+    "longitude": -61.796428,
+    "Total Case": "15",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/AG.svg"
+  },
+  {
+    "countryName": "Argentina",
+    "latitude": -38.416097,
+    "longitude": -63.616672,
+    "Total Case": "1,451",
+    "Total Recovered": "266",
+    "Total Deaths": "43",
+    "Flags": "https://coronavirus.app/assets/img/flags/AR.svg"
+  },
+  {
+    "countryName": "Armenia",
+    "latitude": 40.069099,
+    "longitude": 45.038189,
+    "Total Case": "822",
+    "Total Recovered": "43",
+    "Total Deaths": "7",
+    "Flags": "https://coronavirus.app/assets/img/flags/AM.svg"
+  },
+  {
+    "countryName": "Aruba",
+    "latitude": 12.52111,
+    "longitude": -69.968338,
+    "Total Case": "64",
+    "Total Recovered": "1",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/AW.svg"
+  },
+  {
+    "countryName": "Australia",
+    "latitude": -25.274398,
+    "longitude": 133.775136,
+    "Total Case": "5,677",
+    "Total Recovered": "636",
+    "Total Deaths": "34",
+    "Flags": "https://coronavirus.app/assets/img/flags/AU.svg"
+  },
+  {
+    "countryName": "Austria",
+    "latitude": 47.516231,
+    "longitude": 14.550072,
+    "Total Case": "11,861",
+    "Total Recovered": "2,998",
+    "Total Deaths": "204",
+    "Flags": "https://coronavirus.app/assets/img/flags/AT.svg"
+  },
+  {
+    "countryName": "Azerbaijan",
+    "latitude": 40.143105,
+    "longitude": 47.576927,
+    "Total Case": "521",
+    "Total Recovered": "32",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/AZ.svg"
+  },
+  {
+    "countryName": "Bahrain",
+    "latitude": 25.930414,
+    "longitude": 50.637772,
+    "Total Case": "688",
+    "Total Recovered": "423",
+    "Total Deaths": "4",
+    "Flags": "https://coronavirus.app/assets/img/flags/BH.svg"
+  },
+  {
+    "countryName": "Bangladesh",
+    "latitude": 23.684994,
+    "longitude": 90.356331,
+    "Total Case": "88",
+    "Total Recovered": "30",
+    "Total Deaths": "9",
+    "Flags": "https://coronavirus.app/assets/img/flags/BD.svg"
+  },
+  {
+    "countryName": "Barbados",
+    "latitude": 13.193887,
+    "longitude": -59.543198,
+    "Total Case": "52",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/BB.svg"
+  },
+  {
+    "countryName": "Belarus",
+    "latitude": 53.709807,
+    "longitude": 27.953389,
+    "Total Case": "440",
+    "Total Recovered": "41",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/BY.svg"
+  },
+  {
+    "countryName": "Belgium",
+    "latitude": 50.503887,
+    "longitude": 4.469936,
+    "Total Case": "19,691",
+    "Total Recovered": "3,751",
+    "Total Deaths": "1,447",
+    "Flags": "https://coronavirus.app/assets/img/flags/BE.svg"
+  },
+  {
+    "countryName": "Belize",
+    "latitude": 17.189877,
+    "longitude": -88.49765,
+    "Total Case": "4",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/BZ.svg"
+  },
+  {
+    "countryName": "Benin",
+    "latitude": 9.30769,
+    "longitude": 2.315834,
+    "Total Case": "16",
+    "Total Recovered": "2",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/BJ.svg"
+  },
+  {
+    "countryName": "Bermuda",
+    "latitude": 32.3078,
+    "longitude": 64.7505,
+    "Total Case": "37",
+    "Total Recovered": "14",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/BM.svg"
+  },
+  {
+    "countryName": "Bhutan",
+    "latitude": 27.514162,
+    "longitude": 90.433601,
+    "Total Case": "5",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/BT.svg"
+  },
+  {
+    "countryName": "Bolivia",
+    "latitude": -16.290154,
+    "longitude": -63.588653,
+    "Total Case": "157",
+    "Total Recovered": "2",
+    "Total Deaths": "10",
+    "Flags": "https://coronavirus.app/assets/img/flags/BO.svg"
+  },
+  {
+    "countryName": "Bosnia and Herzegovina",
+    "latitude": 43.915886,
+    "longitude": 17.679076,
+    "Total Case": "634",
+    "Total Recovered": "30",
+    "Total Deaths": "21",
+    "Flags": "https://coronavirus.app/assets/img/flags/BA.svg"
+  },
+  {
+    "countryName": "Brazil",
+    "latitude": -14.235,
+    "longitude": -51.92528,
+    "Total Case": "10,278",
+    "Total Recovered": "127",
+    "Total Deaths": "431",
+    "Flags": "https://coronavirus.app/assets/img/flags/BR.svg"
+  },
+  {
+    "countryName": "Brunei",
+    "latitude": 4.535277,
+    "longitude": 114.727669,
+    "Total Case": "135",
+    "Total Recovered": "66",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/BN.svg"
+  },
+  {
+    "countryName": "Bulgaria",
+    "latitude": 42.733883,
+    "longitude": 25.48583,
+    "Total Case": "522",
+    "Total Recovered": "37",
+    "Total Deaths": "18",
+    "Flags": "https://coronavirus.app/assets/img/flags/BG.svg"
+  },
+  {
+    "countryName": "Burkina Faso",
+    "latitude": 12.238333,
+    "longitude": -1.561593,
+    "Total Case": "318",
+    "Total Recovered": "66",
+    "Total Deaths": "16",
+    "Flags": "https://coronavirus.app/assets/img/flags/BF.svg"
+  },
+  {
+    "countryName": "Burundi",
+    "latitude": 3.3731,
+    "longitude": 29.9189,
+    "Total Case": "3",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/BI.svg"
+  },
+  {
+    "countryName": "Cambodia",
+    "latitude": 12.565679,
+    "longitude": 104.990963,
+    "Total Case": "114",
+    "Total Recovered": "50",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/KH.svg"
+  },
+  {
+    "countryName": "Cameroon",
+    "latitude": 7.369722,
+    "longitude": 12.354722,
+    "Total Case": "555",
+    "Total Recovered": "17",
+    "Total Deaths": "9",
+    "Flags": "https://coronavirus.app/assets/img/flags/CM.svg"
+  },
+  {
+    "countryName": "Canada",
+    "latitude": 56.130366,
+    "longitude": -106.346771,
+    "Total Case": "14,000",
+    "Total Recovered": "2,603",
+    "Total Deaths": "233",
+    "Flags": "https://coronavirus.app/assets/img/flags/CA.svg"
+  },
+  {
+    "countryName": "Cape Verde",
+    "latitude": 16.5388,
+    "longitude": 23.0418,
+    "Total Case": "7",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/CV.svg"
+  },
+  {
+    "countryName": "Cayman Islands",
+    "latitude": 19.513469,
+    "longitude": -80.566956,
+    "Total Case": "35",
+    "Total Recovered": "1",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/KY.svg"
+  },
+  {
+    "countryName": "Chad",
+    "latitude": 15.454166,
+    "longitude": 18.732207,
+    "Total Case": "9",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/TD.svg"
+  },
+  {
+    "countryName": "Chile",
+    "latitude": -35.675147,
+    "longitude": -71.542969,
+    "Total Case": "4,161",
+    "Total Recovered": "528",
+    "Total Deaths": "27",
+    "Flags": "https://coronavirus.app/assets/img/flags/CL.svg"
+  },
+  {
+    "countryName": "China",
+    "latitude": 35.86166,
+    "longitude": 104.195397,
+    "Total Case": "81,669",
+    "Total Recovered": "76,964",
+    "Total Deaths": "3,329",
+    "Flags": "https://coronavirus.app/assets/img/flags/CN.svg"
+  },
+  {
+    "countryName": "Colombia",
+    "latitude": 4.570868,
+    "longitude": -74.297333,
+    "Total Case": "1,406",
+    "Total Recovered": "85",
+    "Total Deaths": "32",
+    "Flags": "https://coronavirus.app/assets/img/flags/CO.svg"
+  },
+  {
+    "countryName": "Costa Rica",
+    "latitude": 9.748917,
+    "longitude": -83.753428,
+    "Total Case": "435",
+    "Total Recovered": "13",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/CR.svg"
+  },
+  {
+    "countryName": "Croatia",
+    "latitude": 45.1,
+    "longitude": 15.2,
+    "Total Case": "1,126",
+    "Total Recovered": "119",
+    "Total Deaths": "12",
+    "Flags": "https://coronavirus.app/assets/img/flags/HR.svg"
+  },
+  {
+    "countryName": "Cuba",
+    "latitude": 21.521757,
+    "longitude": -77.781167,
+    "Total Case": "288",
+    "Total Recovered": "15",
+    "Total Deaths": "6",
+    "Flags": "https://coronavirus.app/assets/img/flags/CU.svg"
+  },
+  {
+    "countryName": "Cura�ao",
+    "latitude": 12.1696,
+    "longitude": 68.99,
+    "Total Case": "11",
+    "Total Recovered": "2",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/CW.svg"
+  },
+  {
+    "countryName": "Cyprus",
+    "latitude": 35.126413,
+    "longitude": 33.429859,
+    "Total Case": "416",
+    "Total Recovered": "33",
+    "Total Deaths": "11",
+    "Flags": "https://coronavirus.app/assets/img/flags/CY.svg"
+  },
+  {
+    "countryName": "Czechia",
+    "latitude": 49.8175,
+    "longitude": 15.473,
+    "Total Case": "4,475",
+    "Total Recovered": "78",
+    "Total Deaths": "62",
+    "Flags": "https://coronavirus.app/assets/img/flags/CZ.svg"
+  },
+  {
+    "countryName": "Denmark",
+    "latitude": 56.26392,
+    "longitude": 9.501785,
+    "Total Case": "4,077",
+    "Total Recovered": "1,283",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/DK.svg"
+  },
+  {
+    "countryName": "Djibouti",
+    "latitude": 11.825138,
+    "longitude": 42.590275,
+    "Total Case": "50",
+    "Total Recovered": "8",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/DJ.svg"
+  },
+  {
+    "countryName": "Dominica",
+    "latitude": 15.414999,
+    "longitude": -61.370976,
+    "Total Case": "14",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/DM.svg"
+  },
+  {
+    "countryName": "Dominican Republic",
+    "latitude": 18.735693,
+    "longitude": -70.162651,
+    "Total Case": "1,578",
+    "Total Recovered": "17",
+    "Total Deaths": "77",
+    "Flags": "https://coronavirus.app/assets/img/flags/DO.svg"
+  },
+  {
+    "countryName": "Ecuador",
+    "latitude": -1.831239,
+    "longitude": -78.183406,
+    "Total Case": "3,465",
+    "Total Recovered": "100",
+    "Total Deaths": "318",
+    "Flags": "https://coronavirus.app/assets/img/flags/EC.svg"
+  },
+  {
+    "countryName": "Egypt",
+    "latitude": 26.820553,
+    "longitude": 30.802498,
+    "Total Case": "1,070",
+    "Total Recovered": "241",
+    "Total Deaths": "71",
+    "Flags": "https://coronavirus.app/assets/img/flags/EG.svg"
+  },
+  {
+    "countryName": "El Salvador",
+    "latitude": 13.794185,
+    "longitude": -88.89653,
+    "Total Case": "56",
+    "Total Recovered": "2",
+    "Total Deaths": "3",
+    "Flags": "https://coronavirus.app/assets/img/flags/SV.svg"
+  },
+  {
+    "countryName": "Equatorial Guinea",
+    "latitude": 1.650801,
+    "longitude": 10.267895,
+    "Total Case": "16",
+    "Total Recovered": "1",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/GQ.svg"
+  },
+  {
+    "countryName": "Eritrea",
+    "latitude": 15.179384,
+    "longitude": 39.782334,
+    "Total Case": "29",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/ER.svg"
+  },
+  {
+    "countryName": "Estonia",
+    "latitude": 58.595272,
+    "longitude": 25.013607,
+    "Total Case": "1,097",
+    "Total Recovered": "62",
+    "Total Deaths": "15",
+    "Flags": "https://coronavirus.app/assets/img/flags/EE.svg"
+  },
+  {
+    "countryName": "Eswatini",
+    "latitude": 26.5225,
+    "longitude": 31.4659,
+    "Total Case": "9",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/SZ.svg"
+  },
+  {
+    "countryName": "Ethiopia",
+    "latitude": 9.145,
+    "longitude": 40.489673,
+    "Total Case": "43",
+    "Total Recovered": "3",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/ET.svg"
+  },
+  {
+    "countryName": "Fiji",
+    "latitude": -16.578193,
+    "longitude": 179.414413,
+    "Total Case": "12",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/FJ.svg"
+  },
+  {
+    "countryName": "Finland",
+    "latitude": 61.92411,
+    "longitude": 25.748151,
+    "Total Case": "1,927",
+    "Total Recovered": "0",
+    "Total Deaths": "25",
+    "Flags": "https://coronavirus.app/assets/img/flags/FI.svg"
+  },
+  {
+    "countryName": "France",
+    "latitude": 46.227638,
+    "longitude": 2.213749,
+    "Total Case": "68,605",
+    "Total Recovered": "14,008",
+    "Total Deaths": "7,560",
+    "Flags": "https://coronavirus.app/assets/img/flags/FR.svg"
+  },
+  {
+    "countryName": "Gabon",
+    "latitude": -0.803689,
+    "longitude": 11.609444,
+    "Total Case": "21",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/GA.svg"
+  },
+  {
+    "countryName": "Georgia",
+    "latitude": 42.315407,
+    "longitude": 43.356892,
+    "Total Case": "170",
+    "Total Recovered": "36",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/GE.svg"
+  },
+  {
+    "countryName": "Germany",
+    "latitude": 51.165691,
+    "longitude": 10.451526,
+    "Total Case": "96,108",
+    "Total Recovered": "23,192",
+    "Total Deaths": "1,446",
+    "Flags": "https://coronavirus.app/assets/img/flags/DE.svg"
+  },
+  {
+    "countryName": "Ghana",
+    "latitude": 7.946527,
+    "longitude": -1.023194,
+    "Total Case": "214",
+    "Total Recovered": "31",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/GH.svg"
+  },
+  {
+    "countryName": "Gibraltar",
+    "latitude": 36.137741,
+    "longitude": -5.345374,
+    "Total Case": "98",
+    "Total Recovered": "52",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/GI.svg"
+  },
+  {
+    "countryName": "Greece",
+    "latitude": 39.074208,
+    "longitude": 21.824312,
+    "Total Case": "1,673",
+    "Total Recovered": "70",
+    "Total Deaths": "68",
+    "Flags": "https://coronavirus.app/assets/img/flags/GR.svg"
+  },
+  {
+    "countryName": "Greenland",
+    "latitude": 71.706936,
+    "longitude": -42.604303,
+    "Total Case": "11",
+    "Total Recovered": "4",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/GL.svg"
+  },
+  {
+    "countryName": "Grenada",
+    "latitude": 12.262776,
+    "longitude": -61.604171,
+    "Total Case": "12",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/GD.svg"
+  },
+  {
+    "countryName": "Guatemala",
+    "latitude": 15.783471,
+    "longitude": -90.230759,
+    "Total Case": "61",
+    "Total Recovered": "15",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/GT.svg"
+  },
+  {
+    "countryName": "Guinea",
+    "latitude": 9.945587,
+    "longitude": -9.696645,
+    "Total Case": "111",
+    "Total Recovered": "5",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/GN.svg"
+  },
+  {
+    "countryName": "Guinea-Bissau",
+    "latitude": 11.8037,
+    "longitude": 15.1804,
+    "Total Case": "18",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/GW.svg"
+  },
+  {
+    "countryName": "Guyana",
+    "latitude": 4.860416,
+    "longitude": -58.93018,
+    "Total Case": "24",
+    "Total Recovered": "0",
+    "Total Deaths": "4",
+    "Flags": "https://coronavirus.app/assets/img/flags/GY.svg"
+  },
+  {
+    "countryName": "Haiti",
+    "latitude": 18.971187,
+    "longitude": -72.285215,
+    "Total Case": "21",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/HT.svg"
+  },
+  {
+    "countryName": "Honduras",
+    "latitude": 15.199999,
+    "longitude": -86.241905,
+    "Total Case": "268",
+    "Total Recovered": "6",
+    "Total Deaths": "22",
+    "Flags": "https://coronavirus.app/assets/img/flags/HN.svg"
+  },
+  {
+    "countryName": "Hong Kong",
+    "latitude": 22.396428,
+    "longitude": 114.109497,
+    "Total Case": "890",
+    "Total Recovered": "206",
+    "Total Deaths": "4",
+    "Flags": "https://coronavirus.app/assets/img/flags/HK.svg"
+  },
+  {
+    "countryName": "Hungary",
+    "latitude": 47.162494,
+    "longitude": 19.503304,
+    "Total Case": "733",
+    "Total Recovered": "66",
+    "Total Deaths": "34",
+    "Flags": "https://coronavirus.app/assets/img/flags/HU.svg"
+  },
+  {
+    "countryName": "Iceland",
+    "latitude": 64.963051,
+    "longitude": -19.020835,
+    "Total Case": "1,417",
+    "Total Recovered": "396",
+    "Total Deaths": "4",
+    "Flags": "https://coronavirus.app/assets/img/flags/IS.svg"
+  },
+  {
+    "countryName": "Sri Lanka",
+    "latitude": 7.873054,
+    "longitude": 80.771797,
+    "Total Case": "167",
+    "Total Recovered": "29",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/LK.svg"
+  },
+  {
+    "countryName": "India",
+    "latitude": 20.593684,
+    "longitude": 78.96288,
+    "Total Case": "3,374",
+    "Total Recovered": "267",
+    "Total Deaths": "77",
+    "Flags": "https://coronavirus.app/assets/img/flags/IN.svg"
+  },
+  {
+    "countryName": "Indonesia",
+    "latitude": -0.789275,
+    "longitude": 113.921327,
+    "Total Case": "2,273",
+    "Total Recovered": "164",
+    "Total Deaths": "198",
+    "Flags": "https://coronavirus.app/assets/img/flags/ID.svg"
+  },
+  {
+    "countryName": "Iran",
+    "latitude": 32.427908,
+    "longitude": 53.688046,
+    "Total Case": "58,226",
+    "Total Recovered": "22,011",
+    "Total Deaths": "3,603",
+    "Flags": "https://coronavirus.app/assets/img/flags/IR.svg"
+  },
+  {
+    "countryName": "Iraq",
+    "latitude": 33.223191,
+    "longitude": 43.679291,
+    "Total Case": "878",
+    "Total Recovered": "259",
+    "Total Deaths": "56",
+    "Flags": "https://coronavirus.app/assets/img/flags/IQ.svg"
+  },
+  {
+    "countryName": "Ireland",
+    "latitude": 53.41291,
+    "longitude": -8.24389,
+    "Total Case": "4,604",
+    "Total Recovered": "25",
+    "Total Deaths": "137",
+    "Flags": "https://coronavirus.app/assets/img/flags/IE.svg"
+  },
+  {
+    "countryName": "Isle of Man",
+    "latitude": 54.2361,
+    "longitude": 4.5481,
+    "Total Case": "127",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/IM.svg"
+  },
+  {
+    "countryName": "Israel",
+    "latitude": 31.046051,
+    "longitude": 34.851612,
+    "Total Case": "8,018",
+    "Total Recovered": "427",
+    "Total Deaths": "47",
+    "Flags": "https://coronavirus.app/assets/img/flags/IL.svg"
+  },
+  {
+    "countryName": "Italy",
+    "latitude": 41.87194,
+    "longitude": 12.56738,
+    "Total Case": "124,632",
+    "Total Recovered": "20,996",
+    "Total Deaths": "15,362",
+    "Flags": "https://coronavirus.app/assets/img/flags/IT.svg"
+  },
+  {
+    "countryName": "Jamaica",
+    "latitude": 18.109581,
+    "longitude": -77.297508,
+    "Total Case": "55",
+    "Total Recovered": "7",
+    "Total Deaths": "3",
+    "Flags": "https://coronavirus.app/assets/img/flags/JM.svg"
+  },
+  {
+    "countryName": "Japan",
+    "latitude": 36.204824,
+    "longitude": 138.252924,
+    "Total Case": "3,271",
+    "Total Recovered": "584",
+    "Total Deaths": "70",
+    "Flags": "https://coronavirus.app/assets/img/flags/JP.svg"
+  },
+  {
+    "countryName": "Jordan",
+    "latitude": 30.585164,
+    "longitude": 36.238414,
+    "Total Case": "323",
+    "Total Recovered": "74",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/JO.svg"
+  },
+  {
+    "countryName": "Kazakhstan",
+    "latitude": 48.019573,
+    "longitude": 66.923684,
+    "Total Case": "569",
+    "Total Recovered": "36",
+    "Total Deaths": "6",
+    "Flags": "https://coronavirus.app/assets/img/flags/KZ.svg"
+  },
+  {
+    "countryName": "Kenya",
+    "latitude": -0.023559,
+    "longitude": 37.906193,
+    "Total Case": "126",
+    "Total Recovered": "4",
+    "Total Deaths": "4",
+    "Flags": "https://coronavirus.app/assets/img/flags/KE.svg"
+  },
+  {
+    "countryName": "Kosovo",
+    "latitude": 42.6026,
+    "longitude": 20.9030,
+    "Total Case": "140",
+    "Total Recovered": "23",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/XK.svg"
+  },
+  {
+    "countryName": "Kuwait",
+    "latitude": 29.31166,
+    "longitude": 47.481766,
+    "Total Case": "556",
+    "Total Recovered": "99",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/KW.svg"
+  },
+  {
+    "countryName": "Kyrgyzstan",
+    "latitude": 41.20438,
+    "longitude": 74.766098,
+    "Total Case": "144",
+    "Total Recovered": "5",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/KG.svg"
+  },
+  {
+    "countryName": "Laos",
+    "latitude": 19.8563,
+    "longitude": 102.4955,
+    "Total Case": "11",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/LA.svg"
+  },
+  {
+    "countryName": "Latvia",
+    "latitude": 56.879635,
+    "longitude": 24.603189,
+    "Total Case": "533",
+    "Total Recovered": "1",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/LV.svg"
+  },
+  {
+    "countryName": "Lebanon",
+    "latitude": 33.854721,
+    "longitude": 35.862285,
+    "Total Case": "527",
+    "Total Recovered": "54",
+    "Total Deaths": "18",
+    "Flags": "https://coronavirus.app/assets/img/flags/LB.svg"
+  },
+  {
+    "countryName": "Liberia",
+    "latitude": 6.428055,
+    "longitude": -9.429499,
+    "Total Case": "10",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/LR.svg"
+  },
+  {
+    "countryName": "Libya",
+    "latitude": 26.3351,
+    "longitude": 17.2283,
+    "Total Case": "18",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/LY.svg"
+  },
+  {
+    "countryName": "Liechtenstein",
+    "latitude": 47.166,
+    "longitude": 9.555373,
+    "Total Case": "77",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/LI.svg"
+  },
+  {
+    "countryName": "Lithuania",
+    "latitude": 55.169438,
+    "longitude": 23.881275,
+    "Total Case": "811",
+    "Total Recovered": "7",
+    "Total Deaths": "11",
+    "Flags": "https://coronavirus.app/assets/img/flags/LT.svg"
+  },
+  {
+    "countryName": "Luxembourg",
+    "latitude": 49.815273,
+    "longitude": 6.129583,
+    "Total Case": "2,729",
+    "Total Recovered": "190",
+    "Total Deaths": "31",
+    "Flags": "https://coronavirus.app/assets/img/flags/LU.svg"
+  },
+  {
+    "countryName": "Macao",
+    "latitude": 22.1987,
+    "longitude": 113.5439,
+    "Total Case": "44",
+    "Total Recovered": "10",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MO.svg"
+  },
+  {
+    "countryName": "Madagascar",
+    "latitude": -18.766947,
+    "longitude": 46.869107,
+    "Total Case": "70",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MG.svg"
+  },
+  {
+    "countryName": "Malaysia",
+    "latitude": 4.210484,
+    "longitude": 101.975766,
+    "Total Case": "3,662",
+    "Total Recovered": "1,005",
+    "Total Deaths": "61",
+    "Flags": "https://coronavirus.app/assets/img/flags/MY.svg"
+  },
+  {
+    "countryName": "Maldives",
+    "latitude": 3.202778,
+    "longitude": 73.22068,
+    "Total Case": "19",
+    "Total Recovered": "13",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MV.svg"
+  },
+  {
+    "countryName": "Mali",
+    "latitude": 17.5707,
+    "longitude": 3.9962,
+    "Total Case": "41",
+    "Total Recovered": "1",
+    "Total Deaths": "3",
+    "Flags": "https://coronavirus.app/assets/img/flags/ML.svg"
+  },
+  {
+    "countryName": "Malta",
+    "latitude": 35.937496,
+    "longitude": 14.375416,
+    "Total Case": "213",
+    "Total Recovered": "2",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MT.svg"
+  },
+  {
+    "countryName": "Mauritania",
+    "latitude": 21.00789,
+    "longitude": -10.940835,
+    "Total Case": "6",
+    "Total Recovered": "2",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/MR.svg"
+  },
+  {
+    "countryName": "Mauritius",
+    "latitude": -20.348404,
+    "longitude": 57.552152,
+    "Total Case": "227",
+    "Total Recovered": "0",
+    "Total Deaths": "7",
+    "Flags": "https://coronavirus.app/assets/img/flags/MU.svg"
+  },
+  {
+    "countryName": "Mexico",
+    "latitude": 23.634501,
+    "longitude": -102.552784,
+    "Total Case": "1,890",
+    "Total Recovered": "634",
+    "Total Deaths": "79",
+    "Flags": "https://coronavirus.app/assets/img/flags/MX.svg"
+  },
+  {
+    "countryName": "Moldova",
+    "latitude": 47.411631,
+    "longitude": 28.369885,
+    "Total Case": "752",
+    "Total Recovered": "30",
+    "Total Deaths": "14",
+    "Flags": "https://coronavirus.app/assets/img/flags/MD.svg"
+  },
+  {
+    "countryName": "Monaco",
+    "latitude": 43.750298,
+    "longitude": 7.412841,
+    "Total Case": "66",
+    "Total Recovered": "3",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/MC.svg"
+  },
+  {
+    "countryName": "Mongolia",
+    "latitude": 46.862496,
+    "longitude": 103.846656,
+    "Total Case": "14",
+    "Total Recovered": "2",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MN.svg"
+  },
+  {
+    "countryName": "Montenegro",
+    "latitude": 42.708678,
+    "longitude": 19.37439,
+    "Total Case": "197",
+    "Total Recovered": "0",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/ME.svg"
+  },
+  {
+    "countryName": "Montserrat",
+    "latitude": 16.742498,
+    "longitude": -62.187366,
+    "Total Case": "6",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MS.svg"
+  },
+  {
+    "countryName": "Morocco",
+    "latitude": 31.791702,
+    "longitude": -7.09262,
+    "Total Case": "960",
+    "Total Recovered": "69",
+    "Total Deaths": "66",
+    "Flags": "https://coronavirus.app/assets/img/flags/MA.svg"
+  },
+  {
+    "countryName": "Mozambique",
+    "latitude": -18.665695,
+    "longitude": 35.529562,
+    "Total Case": "10",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/MZ.svg"
+  },
+  {
+    "countryName": "Namibia",
+    "latitude": -22.95764,
+    "longitude": 18.49041,
+    "Total Case": "16",
+    "Total Recovered": "2",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/NA.svg"
+  },
+  {
+    "countryName": "Nepal",
+    "latitude": 28.394857,
+    "longitude": 84.124008,
+    "Total Case": "9",
+    "Total Recovered": "1",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/NP.svg"
+  },
+  {
+    "countryName": "Netherlands",
+    "latitude": 52.132633,
+    "longitude": 5.291266,
+    "Total Case": "16,627",
+    "Total Recovered": "0",
+    "Total Deaths": "1,651",
+    "Flags": "https://coronavirus.app/assets/img/flags/NL.svg"
+  },
+  {
+    "countryName": "New Caledonia",
+    "latitude": -20.904305,
+    "longitude": 165.618042,
+    "Total Case": "18",
+    "Total Recovered": "1",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/NC.svg"
+  },
+  {
+    "countryName": "New Zealand",
+    "latitude": -40.900557,
+    "longitude": 174.885971,
+    "Total Case": "872",
+    "Total Recovered": "156",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/NZ.svg"
+  },
+  {
+    "countryName": "Nicaragua",
+    "latitude": 12.865416,
+    "longitude": -85.207229,
+    "Total Case": "5",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/NI.svg"
+  },
+  {
+    "countryName": "Niger",
+    "latitude": 17.607789,
+    "longitude": 8.081666,
+    "Total Case": "144",
+    "Total Recovered": "0",
+    "Total Deaths": "8",
+    "Flags": "https://coronavirus.app/assets/img/flags/NE.svg"
+  },
+  {
+    "countryName": "Nigeria",
+    "latitude": 9.081999,
+    "longitude": 8.675277,
+    "Total Case": "224",
+    "Total Recovered": "27",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/NG.svg"
+  },
+  {
+    "countryName": "North Macedonia",
+    "latitude": 41.6086,
+    "longitude": 21.7453,
+    "Total Case": "483",
+    "Total Recovered": "20",
+    "Total Deaths": "17",
+    "Flags": "https://coronavirus.app/assets/img/flags/MK.svg"
+  },
+  {
+    "countryName": "Norway",
+    "latitude": 60.472024,
+    "longitude": 8.468946,
+    "Total Case": "5,644",
+    "Total Recovered": "0",
+    "Total Deaths": "62",
+    "Flags": "https://coronavirus.app/assets/img/flags/NO.svg"
+  },
+  {
+    "countryName": "Oman",
+    "latitude": 21.512583,
+    "longitude": 55.923255,
+    "Total Case": "298",
+    "Total Recovered": "61",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/OM.svg"
+  },
+  {
+    "countryName": "Pakistan",
+    "latitude": 30.375321,
+    "longitude": 69.345116,
+    "Total Case": "2,880",
+    "Total Recovered": "170",
+    "Total Deaths": "45",
+    "Flags": "https://coronavirus.app/assets/img/flags/PK.svg"
+  },
+  {
+    "countryName": "Palestine",
+    "latitude": 31.9522,
+    "longitude": 35.2332,
+    "Total Case": "226",
+    "Total Recovered": "23",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/PS.svg"
+  },
+  {
+    "countryName": "Panama",
+    "latitude": 8.537981,
+    "longitude": -80.782127,
+    "Total Case": "1,801",
+    "Total Recovered": "13",
+    "Total Deaths": "46",
+    "Flags": "https://coronavirus.app/assets/img/flags/PA.svg"
+  },
+  {
+    "countryName": "Papua New Guinea",
+    "latitude": -6.314993,
+    "longitude": 143.95555,
+    "Total Case": "1",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/PG.svg"
+  },
+  {
+    "countryName": "Paraguay",
+    "latitude": -23.442503,
+    "longitude": -58.443832,
+    "Total Case": "104",
+    "Total Recovered": "12",
+    "Total Deaths": "3",
+    "Flags": "https://coronavirus.app/assets/img/flags/PY.svg"
+  },
+  {
+    "countryName": "Peru",
+    "latitude": -9.189967,
+    "longitude": -75.015152,
+    "Total Case": "1,746",
+    "Total Recovered": "914",
+    "Total Deaths": "73",
+    "Flags": "https://coronavirus.app/assets/img/flags/PE.svg"
+  },
+  {
+    "countryName": "Philippines",
+    "latitude": 12.879721,
+    "longitude": 121.774017,
+    "Total Case": "3,246",
+    "Total Recovered": "64",
+    "Total Deaths": "152",
+    "Flags": "https://coronavirus.app/assets/img/flags/PH.svg"
+  },
+  {
+    "countryName": "Poland",
+    "latitude": 51.919438,
+    "longitude": 19.145136,
+    "Total Case": "3,834",
+    "Total Recovered": "116",
+    "Total Deaths": "84",
+    "Flags": "https://coronavirus.app/assets/img/flags/PL.svg"
+  },
+  {
+    "countryName": "Portugal",
+    "latitude": 39.399872,
+    "longitude": -8.224454,
+    "Total Case": "10,524",
+    "Total Recovered": "75",
+    "Total Deaths": "266",
+    "Flags": "https://coronavirus.app/assets/img/flags/PT.svg"
+  },
+  {
+    "countryName": "Qatar",
+    "latitude": 25.354826,
+    "longitude": 51.183884,
+    "Total Case": "1,325",
+    "Total Recovered": "109",
+    "Total Deaths": "3",
+    "Flags": "https://coronavirus.app/assets/img/flags/QA.svg"
+  },
+  {
+    "countryName": "Romania",
+    "latitude": 45.943161,
+    "longitude": 24.96676,
+    "Total Case": "3,864",
+    "Total Recovered": "374",
+    "Total Deaths": "148",
+    "Flags": "https://coronavirus.app/assets/img/flags/RO.svg"
+  },
+  {
+    "countryName": "Russia",
+    "latitude": 61.52401,
+    "longitude": 105.318756,
+    "Total Case": "5,389",
+    "Total Recovered": "355",
+    "Total Deaths": "45",
+    "Flags": "https://coronavirus.app/assets/img/flags/RU.svg"
+  },
+  {
+    "countryName": "Rwanda",
+    "latitude": -1.940278,
+    "longitude": 29.873888,
+    "Total Case": "102",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/RW.svg"
+  },
+  {
+    "countryName": "Saint Kitts and Nevis",
+    "latitude": 17.3578,
+    "longitude": 62.7830,
+    "Total Case": "9",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/KN.svg"
+  },
+  {
+    "countryName": "Saint Lucia",
+    "latitude": 13.909444,
+    "longitude": -60.978893,
+    "Total Case": "14",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/LC.svg"
+  },
+  {
+    "countryName": "San Marino",
+    "latitude": 43.94236,
+    "longitude": 12.457777,
+    "Total Case": "259",
+    "Total Recovered": "27",
+    "Total Deaths": "32",
+    "Flags": "https://coronavirus.app/assets/img/flags/SM.svg"
+  },
+  {
+    "countryName": "Saudi Arabia",
+    "latitude": 23.885942,
+    "longitude": 45.079162,
+    "Total Case": "2,179",
+    "Total Recovered": "420",
+    "Total Deaths": "29",
+    "Flags": "https://coronavirus.app/assets/img/flags/SA.svg"
+  },
+  {
+    "countryName": "Senegal",
+    "latitude": 14.497401,
+    "longitude": -14.452362,
+    "Total Case": "219",
+    "Total Recovered": "72",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/SN.svg"
+  },
+  {
+    "countryName": "Serbia",
+    "latitude": 44.016521,
+    "longitude": 21.005859,
+    "Total Case": "1,624",
+    "Total Recovered": "54",
+    "Total Deaths": "44",
+    "Flags": "https://coronavirus.app/assets/img/flags/RS.svg"
+  },
+  {
+    "countryName": "Seychelles",
+    "latitude": -4.679574,
+    "longitude": 55.491977,
+    "Total Case": "10",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/SC.svg"
+  },
+  {
+    "countryName": "Singapore",
+    "latitude": 1.352083,
+    "longitude": 103.819836,
+    "Total Case": "1,189",
+    "Total Recovered": "297",
+    "Total Deaths": "6",
+    "Flags": "https://coronavirus.app/assets/img/flags/SG.svg"
+  },
+  {
+    "countryName": "Sint Maarten",
+    "latitude": 18.0425,
+    "longitude": 63.0548,
+    "Total Case": "23",
+    "Total Recovered": "3",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/SX.svg"
+  },
+  {
+    "countryName": "Slovakia",
+    "latitude": 48.669026,
+    "longitude": 19.699024,
+    "Total Case": "485",
+    "Total Recovered": "8",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/SK.svg"
+  },
+  {
+    "countryName": "Slovenia",
+    "latitude": 46.151241,
+    "longitude": 14.995463,
+    "Total Case": "977",
+    "Total Recovered": "79",
+    "Total Deaths": "22",
+    "Flags": "https://coronavirus.app/assets/img/flags/SI.svg"
+  },
+  {
+    "countryName": "Somalia",
+    "latitude": 5.152149,
+    "longitude": 46.199616,
+    "Total Case": "7",
+    "Total Recovered": "1",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/SO.svg"
+  },
+  {
+    "countryName": "South Africa",
+    "latitude": -30.559482,
+    "longitude": 22.937506,
+    "Total Case": "1,585",
+    "Total Recovered": "45",
+    "Total Deaths": "9",
+    "Flags": "https://coronavirus.app/assets/img/flags/ZA.svg"
+  },
+  {
+    "countryName": "South Korea",
+    "latitude": 35.9078,
+    "longitude": 127.7669,
+    "Total Case": "10,237",
+    "Total Recovered": "6,463",
+    "Total Deaths": "183",
+    "Flags": "https://coronavirus.app/assets/img/flags/KR.svg"
+  },
+  {
+    "countryName": "Spain",
+    "latitude": 40.463667,
+    "longitude": -3.74922,
+    "Total Case": "130,759",
+    "Total Recovered": "38,080",
+    "Total Deaths": "12,418",
+    "Flags": "https://coronavirus.app/assets/img/flags/ES.svg"
+  },
+
+  {
+    "countryName": "St. Vincent Grenadines",
+    "latitude": 12.9843,
+    "longitude": 61.2872,
+    "Flags": "https://coronavirus.app/assets/img/flags/VC.svg",
+    "Total Cases": "1",
+    "Total Total Deaths": "0",
+    "Total Total Recovered": "0"
+  },
+  {
+    "countryName": "Sudan",
+    "latitude": 12.862807,
+    "longitude": 30.217636,
+    "Total Case": "10",
+    "Total Recovered": "2",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/SD.svg"
+  },
+  {
+    "countryName": "Suriname",
+    "latitude": 3.919305,
+    "longitude": -56.027783,
+    "Total Case": "10",
+    "Total Recovered": "3",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/SR.svg"
+  },
+  {
+    "countryName": "Sweden",
+    "latitude": 60.128161,
+    "longitude": 18.643501,
+    "Total Case": "6,558",
+    "Total Recovered": "205",
+    "Total Deaths": "391",
+    "Flags": "https://coronavirus.app/assets/img/flags/SE.svg"
+  },
+  {
+    "countryName": "Switzerland",
+    "latitude": 46.818188,
+    "longitude": 8.227512,
+    "Total Case": "20,651",
+    "Total Recovered": "6,415",
+    "Total Deaths": "680",
+    "Flags": "https://coronavirus.app/assets/img/flags/CH.svg"
+  },
+  {
+    "countryName": "Syria",
+    "latitude": 34.802075,
+    "longitude": 38.996815,
+    "Total Case": "19",
+    "Total Recovered": "2",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/SY.svg"
+  },
+  {
+    "countryName": "Taiwan",
+    "latitude": 23.69781,
+    "longitude": 120.960515,
+    "Total Case": "363",
+    "Total Recovered": "54",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/TW.svg"
+  },
+  {
+    "countryName": "Tanzania",
+    "latitude": -6.369028,
+    "longitude": 34.888822,
+    "Total Case": "20",
+    "Total Recovered": "2",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/TZ.svg"
+  },
+  {
+    "countryName": "Thailand",
+    "latitude": 15.870032,
+    "longitude": 100.992541,
+    "Total Case": "2,169",
+    "Total Recovered": "612",
+    "Total Deaths": "23",
+    "Flags": "https://coronavirus.app/assets/img/flags/TH.svg"
+  },
+  {
+    "countryName": "Togo",
+    "latitude": 8.619543,
+    "longitude": 0.824782,
+    "Total Case": "41",
+    "Total Recovered": "18",
+    "Total Deaths": "3",
+    "Flags": "https://coronavirus.app/assets/img/flags/TG.svg"
+  },
+  {
+    "countryName": "Trinidad and Tobago",
+    "latitude": 10.691803,
+    "longitude": -61.222503,
+    "Total Case": "103",
+    "Total Recovered": "1",
+    "Total Deaths": "6",
+    "Flags": "https://coronavirus.app/assets/img/flags/TT.svg"
+  },
+  {
+    "countryName": "Tunisia",
+    "latitude": 33.886917,
+    "longitude": 9.537499,
+    "Total Case": "553",
+    "Total Recovered": "5",
+    "Total Deaths": "19",
+    "Flags": "https://coronavirus.app/assets/img/flags/TN.svg"
+  },
+  {
+    "countryName": "Turkey",
+    "latitude": 38.963745,
+    "longitude": 35.243322,
+    "Total Case": "23,934",
+    "Total Recovered": "786",
+    "Total Deaths": "501",
+    "Flags": "https://coronavirus.app/assets/img/flags/TR.svg"
+  },
+  {
+    "countryName": "Uganda",
+    "latitude": 1.373333,
+    "longitude": 32.290275,
+    "Total Case": "48",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/UG.svg"
+  },
+  {
+    "countryName": "Ukraine",
+    "latitude": 48.379433,
+    "longitude": 31.16558,
+    "Total Case": "1,251",
+    "Total Recovered": "25",
+    "Total Deaths": "32",
+    "Flags": "https://coronavirus.app/assets/img/flags/UA.svg"
+  },
+  {
+    "countryName": "United Arab Emirates",
+    "latitude": 23.4241,
+    "longitude": 53.8478,
+    "Total Case": "1,505",
+    "Total Recovered": "125",
+    "Total Deaths": "10",
+    "Flags": "https://coronavirus.app/assets/img/flags/AE.svg"
+  },
+  {
+    "countryName": "United Kingdom",
+    "latitude": 55.3781,
+    "longitude": 3.4360,
+    "Total Case": "41,903",
+    "Total Recovered": "0",
+    "Total Deaths": "4,313",
+    "Flags": "https://coronavirus.app/assets/img/flags/GB.svg"
+  },
+  {
+    "countryName": "United States",
+    "latitude": 37.0902,
+    "longitude": 95.7129,
+    "Total Case": "311,658",
+    "Total Recovered": "14,967",
+    "Total Deaths": "8,492",
+    "Flags": "https://coronavirus.app/assets/img/flags/US.svg"
+  },
+  {
+    "countryName": "Uruguay",
+    "latitude": -32.522779,
+    "longitude": -55.765835,
+    "Total Case": "400",
+    "Total Recovered": "93",
+    "Total Deaths": "5",
+    "Flags": "https://coronavirus.app/assets/img/flags/UY.svg"
+  },
+  {
+    "countryName": "Uzbekistan",
+    "latitude": 41.377491,
+    "longitude": 64.585262,
+    "Total Case": "298",
+    "Total Recovered": "25",
+    "Total Deaths": "2",
+    "Flags": "https://coronavirus.app/assets/img/flags/UZ.svg"
+  },
+  {
+    "countryName": "Vatican City",
+    "latitude": 41.902916,
+    "longitude": 12.453389,
+    "Total Case": "7",
+    "Total Recovered": "0",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/VA.svg"
+  },
+  {
+    "countryName": "Venezuela",
+    "latitude": 6.42375,
+    "longitude": -66.58973,
+    "Total Case": "155",
+    "Total Recovered": "52",
+    "Total Deaths": "7",
+    "Flags": "https://coronavirus.app/assets/img/flags/VE.svg"
+  },
+  {
+    "countryName": "Vietnam",
+    "latitude": 14.058324,
+    "longitude": 108.277199,
+    "Total Case": "240",
+    "Total Recovered": "90",
+    "Total Deaths": "0",
+    "Flags": "https://coronavirus.app/assets/img/flags/VN.svg"
+  },
+  {
+    "countryName": "Zambia",
+    "latitude": -13.133897,
+    "longitude": 27.849332,
+    "Total Case": "39",
+    "Total Recovered": "1",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/ZM.svg"
+  },
+  {
+    "countryName": "Zimbabwe",
+    "latitude": -19.015438,
+    "longitude": 29.154857,
+    "Total Case": "9",
+    "Total Recovered": "0",
+    "Total Deaths": "1",
+    "Flags": "https://coronavirus.app/assets/img/flags/ZW.svg"
+  }
+]

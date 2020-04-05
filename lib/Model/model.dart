@@ -33,11 +33,11 @@ class CountryData {
   });
 
   factory CountryData.fromJson(Map<dynamic, dynamic> json) => CountryData(
-      countryName: json["countryName"],
-      flags: json["Flags"],
-      totalCases: json["Total Cases"],
-      totalDeaths: json["Total Deaths"],
-      totalRecovered: json["Total Recovered"],
-      latitude: json["latitude"],
-      longitude: json["longitude"]);
+      countryName: json['countryName'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      totalCases: json['Total Case'],
+      totalRecovered: json['Total Recovered'],
+      totalDeaths: json['Total Deaths'],
+      flags: json['Flags']);
 }

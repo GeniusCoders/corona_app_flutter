@@ -20,11 +20,12 @@ class CountryPopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 140,
-      margin: EdgeInsets.only(left: 140, top: 4),
+      width: 160,
+      height: 206,
+      margin: EdgeInsets.only(left: 150, top: 4),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          color: Theme.of(context).backgroundColor.withOpacity(.5),
+          color: Theme.of(context).backgroundColor.withOpacity(.8),
           boxShadow: [
             BoxShadow(
                 blurRadius: 6,
@@ -33,6 +34,7 @@ class CountryPopUp extends StatelessWidget {
                 spreadRadius: 0)
           ]),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             height: 80,
@@ -48,30 +50,35 @@ class CountryPopUp extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: <Widget>[
-                Text(
-                  countryName,
-                  style: Theme.of(context).textTheme.title,
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    countryName,
+                    style: Theme.of(context).textTheme.title,
+                  ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 16),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        totalCases,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: .6),
-                      ),
+                    Text(
+                      totalCases,
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: .6),
                     ),
-                    SizedBox(
-                      width: 10,
+                    Spacer(
+                      flex: 1,
                     ),
                     Text(
                       'Total Cases',
-                      style: TextStyle(fontSize: 12, letterSpacing: .6),
+                      style: TextStyle(fontSize: 12, letterSpacing: .2),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Row(
                   children: <Widget>[
@@ -84,17 +91,17 @@ class CountryPopUp extends StatelessWidget {
                             letterSpacing: .6),
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
                     Text(
                       'Recoveries',
-                      style: TextStyle(fontSize: 12, letterSpacing: .6),
+                      style: TextStyle(fontSize: 12, letterSpacing: .2),
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
                       deaths,
@@ -103,12 +110,9 @@ class CountryPopUp extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           letterSpacing: .6),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
                     Text(
                       'Deaths',
-                      style: TextStyle(fontSize: 12, letterSpacing: .6),
+                      style: TextStyle(fontSize: 12, letterSpacing: .2),
                     ),
                   ],
                 ),

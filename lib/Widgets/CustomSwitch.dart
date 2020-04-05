@@ -1,6 +1,5 @@
 import 'package:coronaapp/style/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomSwitch extends StatefulWidget {
   final bool value;
@@ -14,23 +13,33 @@ class CustomSwitch extends StatefulWidget {
 
 class _CustomSwitchState extends State<CustomSwitch>
     with SingleTickerProviderStateMixin {
-  Animation _circleAnimation;
+  Animation<double> _circleAnimation;
   AnimationController _animationController;
+  Animation<Color> _colorAnimation;
+  Animation<Color> _shadowColorAnimation;
 
   @override
   void initState() {
     super.initState();
+
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 60));
-    _circleAnimation = AlignmentTween(
-            begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
-            end: widget.value ? Alignment.centerLeft : Alignment.centerRight)
-        .animate(CurvedAnimation(
-            parent: _animationController, curve: Curves.linear));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _circleAnimation =
+        Tween<double>(begin: widget.value ? 1 : 0, end: widget.value ? 0 : 1)
+            .animate(CurvedAnimation(
+                parent: _animationController, curve: Curves.easeInCirc));
+    _colorAnimation = ColorTween(
+            begin: widget.value ? black : white,
+            end: widget.value ? white : black)
+        .animate(_animationController);
+    _shadowColorAnimation = ColorTween(
+            begin: widget.value ? white : black.withOpacity(.1),
+            end: widget.value ? black.withOpacity(.1) : white)
+        .animate(_animationController);
   }
 
   Widget getSelectedModeIcon() {
-    return _circleAnimation.value == Alignment.centerLeft
+    return _circleAnimation.value == 0
         ? Icon(
             Icons.brightness_1,
             color: yellow,
@@ -58,37 +67,34 @@ class _CustomSwitchState extends State<CustomSwitch>
             } else {
               _animationController.forward();
             }
-            widget.value == false
-                ? widget.onChanged(true)
-                : widget.onChanged(false);
+            widget.onChanged(!widget.value);
           },
           child: Container(
-            width: 45.0,
-            height: 28.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24.0),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10,
-                      offset: Offset(0, 0),
-                      color: _circleAnimation.value != Alignment.centerLeft
-                          ? white
-                          : black.withOpacity(.1),
-                      spreadRadius: 1)
+              width: 45.0,
+              height: 28.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24.0),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        offset: Offset(0, 0),
+                        color: _shadowColorAnimation.value,
+                        spreadRadius: 1)
+                  ],
+                  color: _colorAnimation.value),
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 2,
+                    left: _circleAnimation.value * 22.0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 2.0, bottom: 2.0, right: 2.0, left: 2.0),
+                      child: Container(child: getSelectedModeIcon()),
+                    ),
+                  )
                 ],
-                color: _circleAnimation.value == Alignment.centerLeft
-                    ? white
-                    : black),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 2.0, bottom: 2.0, right: 2.0, left: 2.0),
-              child: Container(
-                  alignment: widget.value
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  child: getSelectedModeIcon()),
-            ),
-          ),
+              )),
         );
       },
     );

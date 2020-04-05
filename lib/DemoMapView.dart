@@ -1,3 +1,4 @@
+import 'package:coronaapp/Model/model.dart';
 import 'package:coronaapp/style/colors.dart';
 import 'package:coronaapp/widgets/CountryListView.dart';
 import 'package:coronaapp/widgets/CustomSwitch.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:latlong/latlong.dart';
 import 'package:provider/provider.dart';
-
 import 'Theme/ThemeProvider.dart';
 import 'Widgets/CountryPopUp.dart';
 import 'Model/model.dart';
@@ -63,8 +63,23 @@ class _DemoMapviewState extends State<DemoMapview>
 
   void _onFocusChange() {
     if (_focus.hasFocus) {
+      filterItem.clear();
+      list.forEach((
+        item,
+      ) {
+        if (selectedFilter == 'Deaths' && item.totalDeaths != '0') {
+          filterItem.add(item);
+        } else if (selectedFilter == 'Recoveries' &&
+            item.totalRecovered != '0') {
+          filterItem.add(item);
+        } else if (selectedFilter == 'Total cases' && item.totalCases != '0') {
+          filterItem.add(item);
+        }
+      });
       setState(() {
         selectedRouteIndex = 1;
+        selectedLang = 0.0;
+        selectedLat = 0.0;
       });
     } else if (!_focus.hasFocus) {
       setState(() {
@@ -98,15 +113,15 @@ class _DemoMapviewState extends State<DemoMapview>
 
   Container markerView(lat, long, color) {
     Color selectColor = selectedLat == lat && selectedLang == long
-        ? blue.withOpacity(.3)
-        : color.withOpacity(.3);
+        ? blue.withOpacity(.2)
+        : color.withOpacity(.2);
     return Container(
       width: 20,
       height: 20,
       decoration: BoxDecoration(
           color: selectColor,
           border: Border.all(
-              width: 2,
+              width: 1.7,
               color: selectedLat == lat && selectedLang == long ? blue : color),
           borderRadius: BorderRadius.all(Radius.circular(10))),
     );
@@ -121,8 +136,8 @@ class _DemoMapviewState extends State<DemoMapview>
 
       LatLng point = LatLng(lat, long);
       return Marker(
-        width: 280,
-        height: 200,
+        width: 290,
+        height: 230,
         point: point,
         anchorPos: AnchorPos.align(AnchorAlign.bottom),
         builder: (ctx) => Column(
@@ -151,17 +166,27 @@ class _DemoMapviewState extends State<DemoMapview>
   }
 
   onSearchTextChanged(String text) async {
-    filterItem.clear();
-    if (text.isEmpty) {
-      setState(() {});
+    List<CountryData> dublicateSearchList = List<CountryData>();
+    dublicateSearchList.addAll(list);
+    if (text.isNotEmpty) {
+      List<CountryData> dummyListData = List<CountryData>();
+      dublicateSearchList.forEach((item) {
+        if (item.countryName.toLowerCase().contains(text.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        filterItem.clear();
+        filterItem.addAll(dummyListData);
+      });
+
       return;
+    } else {
+      setState(() {
+        filterItem.clear();
+        filterItem.addAll(list);
+      });
     }
-    list.forEach((item) {
-      if (item.countryName.toLowerCase().contains(text.toLowerCase())) {
-        filterItem.add(item);
-      }
-    });
-    setState(() {});
   }
 
   void _animatedMapMove(double lat, double long, double destZoom) {
@@ -199,6 +224,8 @@ class _DemoMapviewState extends State<DemoMapview>
 
   void onMenu() {
     _focus.unfocus();
+    editcontroller.clear();
+    filterItem.clear();
     setState(() {
       selectedRouteIndex = 0;
     });
@@ -208,9 +235,6 @@ class _DemoMapviewState extends State<DemoMapview>
     return Container(
       height: 260,
       padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          // color: Theme.of(context).backgroundColor,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(26))),
       child: Column(
         children: <Widget>[
           Row(
@@ -239,11 +263,14 @@ class _DemoMapviewState extends State<DemoMapview>
   ListTile bottomListTiles(String title, Color color) {
     return ListTile(
       onTap: () {
-        setState(() {
-          selectedFilter = title;
-          selectedLat = 0;
-          selectedLang = 0;
-        });
+        if (selectedFilter != title) {
+          setState(() {
+            selectedFilter = title;
+            selectedLat = 0;
+            selectedLang = 0;
+          });
+        }
+
         Navigator.of(context).pop();
       },
       leading: Container(
@@ -298,7 +325,9 @@ class _DemoMapviewState extends State<DemoMapview>
                 Expanded(
                   child: TextField(
                     controller: editcontroller,
-                    onChanged: onSearchTextChanged,
+                    onChanged: (value) {
+                      onSearchTextChanged(value);
+                    },
                     focusNode: _focus,
                     cursorColor: Colors.black,
                     keyboardType: TextInputType.text,
@@ -362,9 +391,11 @@ class _DemoMapviewState extends State<DemoMapview>
               ),
               onTap: () {
                 Navigator.pop(context);
-                setState(() {
-                  selectedRouteIndex = 1;
-                });
+                if (selectedRouteIndex != 1) {
+                  setState(() {
+                    selectedRouteIndex = 1;
+                  });
+                }
                 FocusScope.of(context).requestFocus(_focus);
               },
               title: Text('Countries', style: getSelectedTextTheme(1)),
@@ -376,9 +407,11 @@ class _DemoMapviewState extends State<DemoMapview>
                 color: iconColor,
               ),
               onTap: () {
-                setState(() {
-                  selectedRouteIndex = 2;
-                });
+                if (selectedRouteIndex != 2) {
+                  setState(() {
+                    selectedRouteIndex = 2;
+                  });
+                }
               },
               title: Text('Credit & Source', style: getSelectedTextTheme(2)),
             ),

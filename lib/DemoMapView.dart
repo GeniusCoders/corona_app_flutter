@@ -3,15 +3,14 @@ import 'package:coronaapp/style/colors.dart';
 import 'package:coronaapp/widgets/CountryListView.dart';
 import 'package:coronaapp/widgets/CustomSwitch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+
+import 'Service/service.dart';
 import 'Theme/ThemeProvider.dart';
 import 'Widgets/CountryPopUp.dart';
-import 'Model/model.dart';
-import 'Service/service.dart';
 
 class DemoMapview extends StatefulWidget {
   DemoMapview();
@@ -23,14 +22,14 @@ class _DemoMapviewState extends State<DemoMapview>
     with TickerProviderStateMixin {
   TextEditingController editcontroller = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  FocusNode _focus;
+  late FocusNode _focus;
   double selectedLat = 0.0;
   double selectedLang = 0.0;
   double top = 80;
   List<CountryData> list = [];
   List<CountryData> filterItem = [];
-  MapController mapController;
-  List<Marker> _markers;
+  MapController? mapController;
+  List<Marker>? _markers;
   int selectedRouteIndex = 0;
   String selectedFilter = "Total cases";
 
@@ -38,9 +37,9 @@ class _DemoMapviewState extends State<DemoMapview>
   void initState() {
     super.initState();
     loadCountryData().then((v) => {
-          setState(() => {
-                list = v,
-              }),
+          setState(
+            () => list = v,
+          ),
         });
     mapController = MapController();
     _focus = FocusNode();
@@ -95,19 +94,16 @@ class _DemoMapviewState extends State<DemoMapview>
     switch (selectedFilter) {
       case 'Total cases':
         return markerView(lat, long, pink);
-        break;
 
       case 'Deaths':
         return n.totalDeaths != '0'
             ? markerView(lat, long, purple)
             : SizedBox();
-        break;
 
       case 'Recoveries':
         return n.totalRecovered != '0'
             ? markerView(lat, long, green)
             : SizedBox();
-        break;
     }
   }
 
@@ -131,8 +127,8 @@ class _DemoMapviewState extends State<DemoMapview>
     List<Marker> markers = [];
     bool notNull(Object o) => o != null;
     markers = list.map((n) {
-      double lat = n.latitude;
-      double long = n.longitude;
+      double lat = n.latitude!;
+      double long = n.longitude!;
 
       LatLng point = LatLng(lat, long);
       return Marker(
@@ -166,12 +162,12 @@ class _DemoMapviewState extends State<DemoMapview>
   }
 
   onSearchTextChanged(String text) async {
-    List<CountryData> dublicateSearchList = List<CountryData>();
+    List<CountryData> dublicateSearchList = <CountryData>[];
     dublicateSearchList.addAll(list);
     if (text.isNotEmpty) {
-      List<CountryData> dummyListData = List<CountryData>();
+      List<CountryData> dummyListData = <CountryData>[];
       dublicateSearchList.forEach((item) {
-        if (item.countryName.toLowerCase().contains(text.toLowerCase())) {
+        if (item.countryName!.toLowerCase().contains(text.toLowerCase())) {
           dummyListData.add(item);
         }
       });
@@ -194,10 +190,10 @@ class _DemoMapviewState extends State<DemoMapview>
     editcontroller.clear();
     _focus.unfocus();
     final _latTween =
-        Tween<double>(begin: mapController.center.latitude, end: lat);
+        Tween<double>(begin: mapController!.center.latitude, end: lat);
     final _lngTween =
-        Tween<double>(begin: mapController.center.longitude, end: long);
-    final _zoomTween = Tween<double>(begin: mapController.zoom, end: destZoom);
+        Tween<double>(begin: mapController!.center.longitude, end: long);
+    final _zoomTween = Tween<double>(begin: mapController!.zoom, end: destZoom);
 
     var controller = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
@@ -205,7 +201,7 @@ class _DemoMapviewState extends State<DemoMapview>
         CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
 
     controller.addListener(() {
-      mapController.move(
+      mapController!.move(
           LatLng(_latTween.evaluate(animation), _lngTween.evaluate(animation)),
           _zoomTween.evaluate(animation));
     });
@@ -372,7 +368,7 @@ class _DemoMapviewState extends State<DemoMapview>
               padding: const EdgeInsets.fromLTRB(10, 10, 20, 30),
               child: Text(
                 'The Coronavirus App',
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
             ListTile(
@@ -423,7 +419,7 @@ class _DemoMapviewState extends State<DemoMapview>
               ),
               title: Text(
                 'Contact us',
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
             Padding(
@@ -446,7 +442,7 @@ class _DemoMapviewState extends State<DemoMapview>
               ),
               title: Text(
                 'Theme',
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
           ],

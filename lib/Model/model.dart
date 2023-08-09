@@ -2,11 +2,11 @@ class CountryDataList {
   final List<CountryData> countryData;
 
   CountryDataList({
-    this.countryData,
+    required this.countryData,
   });
 
   factory CountryDataList.fromJson(List<dynamic> parsedJson) {
-    List<CountryData> countryData = new List<CountryData>();
+    List<CountryData> countryData = <CountryData>[];
     countryData = parsedJson.map((i) => CountryData.fromJson(i)).toList();
 
     return new CountryDataList(countryData: countryData);
@@ -14,13 +14,13 @@ class CountryDataList {
 }
 
 class CountryData {
-  String countryName;
-  String flags;
-  String totalCases;
-  String totalDeaths;
-  String totalRecovered;
-  double latitude;
-  double longitude;
+  String? countryName;
+  String? flags;
+  String? totalCases;
+  String? totalDeaths;
+  String? totalRecovered;
+  double? latitude;
+  double? longitude;
 
   CountryData({
     this.countryName,

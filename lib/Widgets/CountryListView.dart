@@ -30,19 +30,16 @@ class _CountryListViewState extends State<CountryListView> {
     switch (widget.selectedFilter) {
       case 'Total cases':
         return textData(text.totalCases, pink);
-        break;
 
       case 'Deaths':
         return text.totalDeaths != '0'
             ? textData(text.totalDeaths, purple)
-            : null;
-        break;
+            : textData("", purple);
 
       case 'Recoveries':
         return text.totalRecovered != '0'
             ? textData(text.totalRecovered, green)
-            : null;
-        break;
+            : textData("", green);
     }
     return SizedBox();
   }
@@ -52,12 +49,12 @@ class _CountryListViewState extends State<CountryListView> {
       onTap: () => widget._animatedMapMove(widget.filterItem[index].latitude,
           widget.filterItem[index].longitude, 5.0),
       leading: SvgPicture.network(
-        widget.filterItem[index].flags,
+        widget.filterItem[index].flags!,
         width: 26,
         height: 26,
       ),
-      title: Text(widget.filterItem[index].countryName,
-          style: Theme.of(context).textTheme.subtitle),
+      title: Text(widget.filterItem[index].countryName ?? "",
+          style: TextStyle(fontSize: 16)),
       trailing: setTextData(index),
     );
   }
@@ -66,15 +63,12 @@ class _CountryListViewState extends State<CountryListView> {
     switch (widget.selectedFilter) {
       case 'Total cases':
         return pink;
-        break;
 
       case 'Deaths':
         return purple;
-        break;
 
       case 'Recoveries':
         return green;
-        break;
     }
     return black;
   }

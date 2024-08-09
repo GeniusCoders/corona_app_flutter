@@ -5,7 +5,7 @@ class CustomSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
 
-  CustomSwitch({Key key, this.value, this.onChanged}) : super(key: key);
+  CustomSwitch({required this.value, required this.onChanged});
 
   @override
   _CustomSwitchState createState() => _CustomSwitchState();
@@ -13,10 +13,10 @@ class CustomSwitch extends StatefulWidget {
 
 class _CustomSwitchState extends State<CustomSwitch>
     with SingleTickerProviderStateMixin {
-  Animation<double> _circleAnimation;
-  AnimationController _animationController;
-  Animation<Color> _colorAnimation;
-  Animation<Color> _shadowColorAnimation;
+  Animation<double>? _circleAnimation;
+  AnimationController? _animationController;
+  late Animation<Color?> _colorAnimation;
+  Animation<Color?>? _shadowColorAnimation;
 
   @override
   void initState() {
@@ -27,19 +27,19 @@ class _CustomSwitchState extends State<CustomSwitch>
     _circleAnimation =
         Tween<double>(begin: widget.value ? 1 : 0, end: widget.value ? 0 : 1)
             .animate(CurvedAnimation(
-                parent: _animationController, curve: Curves.easeInCirc));
+                parent: _animationController!, curve: Curves.easeInCirc));
     _colorAnimation = ColorTween(
             begin: widget.value ? black : white,
             end: widget.value ? white : black)
-        .animate(_animationController);
+        .animate(_animationController!);
     _shadowColorAnimation = ColorTween(
             begin: widget.value ? white : black.withOpacity(.1),
             end: widget.value ? black.withOpacity(.1) : white)
-        .animate(_animationController);
+        .animate(_animationController!);
   }
 
   Widget getSelectedModeIcon() {
-    return _circleAnimation.value == 0
+    return _circleAnimation!.value == 0
         ? Icon(
             Icons.brightness_1,
             color: yellow,
@@ -58,14 +58,14 @@ class _CustomSwitchState extends State<CustomSwitch>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _animationController,
+      animation: _animationController!,
       builder: (context, child) {
         return GestureDetector(
           onTap: () {
-            if (_animationController.isCompleted) {
-              _animationController.reverse();
+            if (_animationController!.isCompleted) {
+              _animationController!.reverse();
             } else {
-              _animationController.forward();
+              _animationController!.forward();
             }
             widget.onChanged(!widget.value);
           },
@@ -78,7 +78,7 @@ class _CustomSwitchState extends State<CustomSwitch>
                     BoxShadow(
                         blurRadius: 10,
                         offset: Offset(0, 0),
-                        color: _shadowColorAnimation.value,
+                        color: _shadowColorAnimation!.value!,
                         spreadRadius: 1)
                   ],
                   color: _colorAnimation.value),
@@ -86,7 +86,7 @@ class _CustomSwitchState extends State<CustomSwitch>
                 children: <Widget>[
                   Positioned(
                     top: 2,
-                    left: _circleAnimation.value * 22.0,
+                    left: _circleAnimation!.value * 22.0,
                     child: Padding(
                       padding: const EdgeInsets.only(
                           top: 2.0, bottom: 2.0, right: 2.0, left: 2.0),

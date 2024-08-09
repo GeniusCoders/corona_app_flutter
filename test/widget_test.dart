@@ -13,7 +13,7 @@ import 'package:coronaapp/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Home(none));
+    // await tester.pumpWidget(MapVi(none));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

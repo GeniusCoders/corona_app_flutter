@@ -4,7 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 
 Future<String> _loadPhotoAsset() async {
-  return await rootBundle.loadString('assets/new2.json');
+  return await rootBundle.loadString('assets/corona_data.json');
 }
 
 Future<List<CountryData>> loadCountryData() async {

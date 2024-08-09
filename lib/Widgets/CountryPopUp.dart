@@ -9,23 +9,21 @@ class CountryPopUp extends StatelessWidget {
   final String deaths;
 
   const CountryPopUp({
-    Key key,
-    this.flag,
-    this.countryName,
-    this.totalCases,
-    this.recovery,
-    this.deaths,
-  }) : super(key: key);
+    required this.flag,
+    required this.countryName,
+    required this.totalCases,
+    required this.recovery,
+    required this.deaths,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 160,
-      height: 206,
       margin: EdgeInsets.only(left: 150, top: 4),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(6)),
-          color: Theme.of(context).backgroundColor.withOpacity(.8),
+          color: Theme.of(context).scaffoldBackgroundColor.withOpacity(.8),
           boxShadow: [
             BoxShadow(
                 blurRadius: 6,
@@ -54,10 +52,13 @@ class CountryPopUp extends StatelessWidget {
                   fit: BoxFit.contain,
                   child: Text(
                     countryName,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: .6),
                   ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 14),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

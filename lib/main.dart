@@ -1,4 +1,4 @@
-import 'package:coronaapp/DemoMapView.dart';
+import 'package:coronaapp/Mapview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Theme Changer',
       theme: themeProvider.getThemeData,
-      home: DemoMapview(),
+      home: Mapview(),
     );
   }
 }

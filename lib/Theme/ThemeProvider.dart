@@ -20,7 +20,7 @@ class ThemeProvider with ChangeNotifier {
 final darkTheme = ThemeData(
     primaryColor: Colors.black,
     brightness: Brightness.dark,
-    backgroundColor: lightBlack,
+    scaffoldBackgroundColor: lightBlack,
     textTheme: TextTheme(
         titleMedium: TextStyle(
             color: lightWhite, fontSize: 18, fontWeight: FontWeight.w800),
@@ -29,12 +29,13 @@ final darkTheme = ThemeData(
     iconTheme: IconThemeData(color: lightWhite));
 
 final lightTheme = ThemeData(
-    primaryColor: Colors.white,
-    brightness: Brightness.light,
-    backgroundColor: lightWhite,
-    textTheme: TextTheme(
-        titleMedium: TextStyle(
-            color: mediumBlack, fontSize: 18, fontWeight: FontWeight.w800),
-        titleSmall: TextStyle(
-            color: mediumBlack, fontSize: 16, fontWeight: FontWeight.w700)),
-    iconTheme: IconThemeData(color: mediumBlack));
+  primaryColor: Colors.white,
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: lightWhite,
+  textTheme: TextTheme(
+      titleMedium: TextStyle(
+          color: mediumBlack, fontSize: 18, fontWeight: FontWeight.w800),
+      titleSmall: TextStyle(
+          color: mediumBlack, fontSize: 16, fontWeight: FontWeight.w700)),
+  iconTheme: IconThemeData(color: mediumBlack),
+);

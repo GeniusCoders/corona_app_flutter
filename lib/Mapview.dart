@@ -1,231 +1,506 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_map/flutter_map.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:latlong2/latlong.dart';
+import 'package:coronaapp/Model/model.dart';
+import 'package:coronaapp/style/colors.dart';
+import 'package:coronaapp/widgets/CountryListView.dart';
+import 'package:coronaapp/widgets/CustomSwitch.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
 
-// import 'Model/model.dart';
-// import 'Service/service.dart';
+import 'Service/service.dart';
+import 'Theme/ThemeProvider.dart';
+import 'Widgets/CountryPopUp.dart';
 
-// class Mapview extends StatefulWidget {
-//   Mapview();
-//   @override
-//   _MapviewState createState() => _MapviewState();
-// }
+class Mapview extends StatefulWidget {
+  Mapview();
+  @override
+  _MapviewState createState() => _MapviewState();
+}
 
-// class _MapviewState extends State<Mapview> {
-//   Color pink = Color(0xFFFF416C);
-//   Color blue = Color(0xFF294aff);
-//   double selectedLat = 0.0;
-//   double selectedLang = 0.0;
-//   bool loaded = false;
-//   List<CountryData> list = [];
-//   List<Marker> _markers;
+class _MapviewState extends State<Mapview> with TickerProviderStateMixin {
+  TextEditingController editcontroller = new TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  late FocusNode _focus;
+  double selectedLat = 0.0;
+  double selectedLang = 0.0;
+  double top = 80;
+  List<CountryData> list = [];
+  List<CountryData> filterItem = [];
+  MapController? mapController;
+  List<Marker>? _markers;
+  int selectedRouteIndex = 0;
+  String selectedFilter = "Total cases";
 
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     loadCountryData().then((v) => {
-//           setState(() => {list = v, loaded = true}),
-//         });
-//   }
+  @override
+  void initState() {
+    super.initState();
+    loadCountryData().then((v) => {
+          setState(
+            () => list = v,
+          ),
+        });
+    mapController = MapController();
+    _focus = FocusNode();
+    _focus.addListener(_onFocusChange);
+  }
 
-//   void _setToolTipShow(double lat, double lang) {
-//     setState(() {
-//       selectedLat = lat;
-//       selectedLang = lang;
-//     });
-//   }
+  @override
+  void dispose() {
+    editcontroller.dispose();
+    _focus.dispose();
+    super.dispose();
+  }
 
-//   void setMarkers() async {
-//     var notes = list;
-//     List<Marker> markers = [];
+  void _setToolTipShow(double lat, double lang) {
+    setState(() {
+      selectedLat = lat;
+      selectedLang = lang;
+    });
+  }
 
-//     markers = notes.map((n) {
-//       double lat = n.latitude;
-//       double long = n.longitude;
-//       Color selectColor = selectedLat == lat && selectedLang == long
-//           ? blue.withOpacity(.3)
-//           : pink.withOpacity(.3);
-//       LatLng point = LatLng(lat, long);
-//       return Marker(
-//         width: 200.0,
-//         height: 220.0,
-//         point: point,
-//         builder: (ctx) => Stack(
-//           children: <Widget>[
-//             GestureDetector(
-//               onTap: () => _setToolTipShow(lat, long),
-//               child: Container(
-//                 width: 40,
-//                 height: 40,
-//                 decoration: BoxDecoration(
-//                     color: selectColor,
-//                     border: Border.all(
-//                         width: 2,
-//                         color: selectedLat == lat && selectedLang == long
-//                             ? blue.withOpacity(.3)
-//                             : pink),
-//                     borderRadius: BorderRadius.all(Radius.circular(20))),
-//               ),
-//             ),
-//             selectedLat == lat && selectedLang == long
-//                 ? CountryPopUp(
-//                     flag: n.flags,
-//                     countryName: n.countryName,
-//                     totalCases: n.totalCases,
-//                     recovery: n.totalRecovered,
-//                     deaths: n.totalDeaths,
-//                   )
-//                 : Container()
-//           ],
-//         ),
-//       );
-//     }).toList();
+  void _onFocusChange() {
+    if (_focus.hasFocus) {
+      filterItem.clear();
+      list.forEach((
+        item,
+      ) {
+        if (selectedFilter == 'Deaths' && item.totalDeaths != '0') {
+          filterItem.add(item);
+        } else if (selectedFilter == 'Recoveries' &&
+            item.totalRecovered != '0') {
+          filterItem.add(item);
+        } else if (selectedFilter == 'Total cases' && item.totalCases != '0') {
+          filterItem.add(item);
+        }
+      });
+      setState(() {
+        selectedRouteIndex = 1;
+        selectedLang = 0.0;
+        selectedLat = 0.0;
+      });
+    } else if (!_focus.hasFocus) {
+      setState(() {
+        selectedRouteIndex = 0;
+      });
+    }
+  }
 
-//     setState(() {
-//       _markers = markers;
-//     });
-//   }
+  setMarkerFilter(n) {
+    double lat = n.latitude;
+    double long = n.longitude;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     setMarkers();
-//     return Scaffold(
-//         body: FlutterMap(
-//             options: MapOptions(
-//               maxZoom: 4,
-//               minZoom: 3,
-//               center: LatLng(20.5937, 78.9629),
-//               zoom: 13.0,
-//             ),
-//             layers: [
-//           TileLayerOptions(
-//               urlTemplate:
-//                   "https://api.maptiler.com/maps/positron/{z}/{x}/{y}.png?key=NdGiakn2BJ2BA8hWhBLN",
-//               subdomains: ['a', 'b', 'c']),
-//           MarkerLayerOptions(markers: _markers)
-//         ]));
-//   }
-// }
+    switch (selectedFilter) {
+      case 'Total cases':
+        return markerView(lat, long, pink);
 
-// class CountryPopUp extends StatelessWidget {
-//   final String flag;
-//   final String countryName;
-//   final String totalCases;
-//   final String recovery;
-//   final String deaths;
+      case 'Deaths':
+        return n.totalDeaths != '0'
+            ? markerView(lat, long, purple)
+            : SizedBox();
 
-//   const CountryPopUp(
-//       {Key key,
-//       this.flag,
-//       this.countryName,
-//       this.totalCases,
-//       this.recovery,
-//       this.deaths})
-//       : super(key: key);
+      case 'Recoveries':
+        return n.totalRecovered != '0'
+            ? markerView(lat, long, green)
+            : SizedBox();
+    }
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: 140,
-//       margin: EdgeInsets.only(left: 20, top: 30),
-//       decoration: BoxDecoration(
-//           borderRadius: BorderRadius.all(Radius.circular(8)),
-//           color: Colors.white.withOpacity(.8),
-//           boxShadow: [
-//             BoxShadow(
-//                 blurRadius: 6,
-//                 offset: Offset(2, 0),
-//                 color: Color.fromRGBO(0, 0, 0, 0.1),
-//                 spreadRadius: 0)
-//           ]),
-//       child: Column(
-//         children: <Widget>[
-//           Container(
-//             height: 80,
-//             child: SvgPicture.network(flag, fit: BoxFit.cover),
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-//             ),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.all(10),
-//             child: Column(
-//               children: <Widget>[
-//                 Text(
-//                   countryName,
-//                   style: TextStyle(
-//                       fontSize: 18,
-//                       fontWeight: FontWeight.w500,
-//                       letterSpacing: .6),
-//                 ),
-//                 SizedBox(height: 10),
-//                 Row(
-//                   children: <Widget>[
-//                     Expanded(
-//                       child: Text(
-//                         totalCases,
-//                         style: TextStyle(
-//                             fontSize: 12,
-//                             fontWeight: FontWeight.bold,
-//                             letterSpacing: .6),
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       width: 10,
-//                     ),
-//                     Text(
-//                       'Total Cases',
-//                       style: TextStyle(fontSize: 12, letterSpacing: .6),
-//                     ),
-//                   ],
-//                 ),
-//                 Row(
-//                   children: <Widget>[
-//                     Expanded(
-//                       child: Text(
-//                         recovery,
-//                         style: TextStyle(
-//                             fontSize: 12,
-//                             fontWeight: FontWeight.bold,
-//                             letterSpacing: .6),
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       width: 10,
-//                     ),
-//                     Text(
-//                       'Recoveries',
-//                       style: TextStyle(fontSize: 12, letterSpacing: .6),
-//                     ),
-//                   ],
-//                 ),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                   children: <Widget>[
-//                     Text(
-//                       deaths,
-//                       style: TextStyle(
-//                           fontSize: 12,
-//                           fontWeight: FontWeight.bold,
-//                           letterSpacing: .6),
-//                     ),
-//                     SizedBox(
-//                       width: 10,
-//                     ),
-//                     Text(
-//                       'Deaths',
-//                       style: TextStyle(fontSize: 12, letterSpacing: .6),
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+  Container markerView(lat, long, color) {
+    Color selectColor = selectedLat == lat && selectedLang == long
+        ? blue.withOpacity(.2)
+        : color.withOpacity(.2);
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: BoxDecoration(
+          color: selectColor,
+          border: Border.all(
+              width: 1.7,
+              color: selectedLat == lat && selectedLang == long ? blue : color),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+    );
+  }
+
+  void setMarkers() async {
+    List<Marker> markers = [];
+    bool notNull(Object o) => o != null;
+    markers = list.map((n) {
+      double lat = n.latitude!;
+      double long = n.longitude!;
+
+      LatLng point = LatLng(lat, long);
+      return Marker(
+        width: 290,
+        height: 250,
+        point: point,
+        anchorPos: AnchorPos.align(AnchorAlign.bottom),
+        builder: (ctx) => Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            GestureDetector(
+                onTap: () => _setToolTipShow(lat, long),
+                child: setMarkerFilter(n)),
+            selectedLat == lat && selectedLang == long
+                ? CountryPopUp(
+                    flag: n.flags ?? "",
+                    countryName: n.countryName ?? "",
+                    totalCases: n.totalCases ?? "",
+                    recovery: n.totalRecovered ?? "",
+                    deaths: n.totalDeaths ?? "",
+                  )
+                : SizedBox.shrink()
+          ].where(notNull).toList(),
+        ),
+      );
+    }).toList();
+
+    setState(() {
+      _markers = markers;
+    });
+  }
+
+  onSearchTextChanged(String text) async {
+    List<CountryData> dublicateSearchList = <CountryData>[];
+    dublicateSearchList.addAll(list);
+    if (text.isNotEmpty) {
+      List<CountryData> dummyListData = <CountryData>[];
+      dublicateSearchList.forEach((item) {
+        if (item.countryName!.toLowerCase().contains(text.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        filterItem.clear();
+        filterItem.addAll(dummyListData);
+      });
+
+      return;
+    } else {
+      setState(() {
+        filterItem.clear();
+        filterItem.addAll(list);
+      });
+    }
+  }
+
+  void _animatedMapMove(double lat, double long, double destZoom) {
+    filterItem.clear();
+    editcontroller.clear();
+    _focus.unfocus();
+    final _latTween =
+        Tween<double>(begin: mapController!.center.latitude, end: lat);
+    final _lngTween =
+        Tween<double>(begin: mapController!.center.longitude, end: long);
+    final _zoomTween = Tween<double>(begin: mapController!.zoom, end: destZoom);
+
+    var controller = AnimationController(
+        duration: const Duration(milliseconds: 500), vsync: this);
+    Animation<double> animation =
+        CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
+
+    controller.addListener(() {
+      mapController!.move(
+          LatLng(_latTween.evaluate(animation), _lngTween.evaluate(animation)),
+          _zoomTween.evaluate(animation));
+    });
+
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.dispose();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.dispose();
+      }
+    });
+
+    controller.forward();
+    _setToolTipShow(lat, long);
+  }
+
+  void onMenu() {
+    _focus.unfocus();
+    editcontroller.clear();
+    filterItem.clear();
+    setState(() {
+      selectedRouteIndex = 0;
+    });
+  }
+
+  Widget bottomSheetView() {
+    return Container(
+      height: 260,
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Filter',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(fontSize: 20),
+              ),
+              IconButton(
+                icon: FaIcon(FontAwesomeIcons.times, size: 20),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
+          bottomListTiles('Total cases', pink),
+          bottomListTiles('Deaths', purple),
+          bottomListTiles('Recoveries', green),
+        ],
+      ),
+    );
+  }
+
+  ListTile bottomListTiles(String title, Color color) {
+    return ListTile(
+      onTap: () {
+        if (selectedFilter != title) {
+          setState(() {
+            selectedFilter = title;
+            selectedLat = 0;
+            selectedLang = 0;
+          });
+        }
+
+        Navigator.of(context).pop();
+      },
+      leading: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+            border: Border.all(width: 2, color: color),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            color: color.withOpacity(.2)),
+      ),
+      title: Text(
+        title,
+        style:
+            Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 20),
+      ),
+    );
+  }
+
+  Widget searchBar(ThemeProvider themeProvider) {
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          top: 50,
+          right: 15,
+          left: 15,
+          child: Container(
+            decoration: BoxDecoration(
+              color: themeProvider.isLightTheme ? lightBlack : white,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 6,
+                    offset: Offset(2, 0),
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                    spreadRadius: 0)
+              ],
+            ),
+            child: Row(
+              children: <Widget>[
+                !_focus.hasFocus
+                    ? IconButton(
+                        icon: FaIcon(
+                          FontAwesomeIcons.bars,
+                          size: 18,
+                        ),
+                        onPressed: () {
+                          _scaffoldKey.currentState!.openDrawer();
+                        },
+                      )
+                    : IconButton(
+                        icon: FaIcon(FontAwesomeIcons.angleLeft),
+                        onPressed: () => onMenu()),
+                Expanded(
+                  child: TextField(
+                    controller: editcontroller,
+                    onChanged: (value) {
+                      onSearchTextChanged(value);
+                    },
+                    focusNode: _focus,
+                    cursorColor: Colors.black,
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.go,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                        hintStyle: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w400),
+                        hintText: "Search regions"),
+                  ),
+                ),
+                IconButton(
+                    icon: FaIcon(
+                      FontAwesomeIcons.filter,
+                      size: 18,
+                    ),
+                    onPressed: () {
+                      _focus.unfocus();
+                      _scaffoldKey.currentState!
+                          .showBottomSheet((context) => bottomSheetView());
+                    })
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  TextStyle getSelectedTextTheme(myRouetIndex) {
+    return selectedRouteIndex == myRouetIndex
+        ? Theme.of(context).textTheme.titleSmall!.copyWith(color: pink)
+        : Theme.of(context).textTheme.titleSmall!;
+  }
+
+  Widget setDrawer(ThemeProvider themeProvider) {
+    return Drawer(
+      child: Container(
+        child: ListView(
+          padding: EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 20, 30),
+              child: Text(
+                'The Coronavirus App',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.mapMarkerAlt,
+                size: 18,
+                color: iconColor,
+              ),
+              title: Text('Map', style: getSelectedTextTheme(0)),
+            ),
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.fontAwesomeFlag,
+                size: 18,
+                color: iconColor,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                if (selectedRouteIndex != 1) {
+                  setState(() {
+                    selectedRouteIndex = 1;
+                  });
+                }
+                FocusScope.of(context).requestFocus(_focus);
+              },
+              title: Text('Countries', style: getSelectedTextTheme(1)),
+            ),
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.book,
+                size: 18,
+                color: iconColor,
+              ),
+              onTap: () {
+                if (selectedRouteIndex != 2) {
+                  setState(() {
+                    selectedRouteIndex = 2;
+                  });
+                }
+              },
+              title: Text('Credit & Source', style: getSelectedTextTheme(2)),
+            ),
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.at,
+                size: 18,
+                color: iconColor,
+              ),
+              title: Text(
+                'Contact us',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 30, 10, 20),
+              child: Text(
+                'PREFERENCES',
+                style: TextStyle(
+                    color: iconColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: .3),
+              ),
+            ),
+            ListTile(
+              trailing: CustomSwitch(
+                value: themeProvider.isLightTheme,
+                onChanged: (val) {
+                  themeProvider.setThemeData = val;
+                },
+              ),
+              title: Text(
+                'Theme',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    setMarkers();
+
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    String mapType = "positron";
+    if (mapController != null) {
+      if (themeProvider.isLightTheme) {
+        mapType = "darkmatter";
+      } else {
+        mapType = "positron";
+      }
+    }
+
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      drawer: setDrawer(themeProvider),
+      body: Stack(
+        children: <Widget>[
+          FlutterMap(
+              mapController: mapController,
+              options: MapOptions(
+                maxZoom: 5,
+                minZoom: 3,
+                center: LatLng(20.5937, 78.9629),
+                zoom: 13.0,
+                onTap: (pos, latLng) {
+                  _setToolTipShow(0, 0);
+                },
+              ),
+              children: [
+                TileLayer(
+                    urlTemplate:
+                        "https://api.maptiler.com/maps/$mapType/{z}/{x}/{y}.png?key=NdGiakn2BJ2BA8hWhBLN",
+                    subdomains: ['a', 'b', 'c']),
+                MarkerLayer(markers: _markers ?? [])
+              ]),
+          _focus.hasFocus
+              ? CountryListView(filterItem, _animatedMapMove, selectedFilter)
+              : Container(),
+          searchBar(themeProvider)
+        ],
+      ),
+    );
+  }
+}
